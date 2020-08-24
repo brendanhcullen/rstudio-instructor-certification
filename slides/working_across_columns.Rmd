@@ -1,0 +1,95 @@
+---
+title: "Column-wise operations with `dplyr`"
+author: "Brendan Cullen"
+date: "08/28/20"
+output:
+  xaringan::moon_reader:
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+class: center, middle
+
+# Christina Colwise
+
+.pull-left[
+![](../img/christina_colwise.png)
+
+]
+
+
+.pull-right[
+## General Background
+
+.left[
+- Words 
+- More words
+]
+]
+
+---
+
+class: center, middle
+
+# Christina Colwise
+
+.pull-left[
+![](../img/christina_colwise.png)
+
+]
+
+
+.pull-right[
+## Starting Point
+
+Words 
+
+]
+
+---
+
+class: center, middle
+
+# Christina Colwise
+
+.pull-left[
+![](../img/christina_colwise.png)
+
+]
+
+
+.pull-right[
+## Needs
+
+Words 
+
+]
+
+---
+
+class: center, middle
+
+# Christina Colwise
+
+.pull-left[
+![](../img/christina_colwise.png)
+
+]
+
+
+.pull-right[
+## Special Considerations
+
+Words 
+
+]
+
+---
+
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+
