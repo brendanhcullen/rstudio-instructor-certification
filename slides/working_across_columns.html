@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Column-wise operations with dplyr</title>
+    <title>Column-wise operations with</title>
     <meta charset="utf-8" />
     <meta name="author" content="Brendan Cullen" />
     <meta name="date" content="2020-08-28" />
@@ -12,13 +12,21 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Column-wise operations with <code>dplyr</code>
+# Column-wise operations with
+## <code>dplyr</code>
 ### Brendan Cullen
 ### 08/28/20
 
 ---
 
-class: center, middle
+
+&lt;style type="text/css"&gt;
+pre {
+  overflow-x: scroll;
+}
+&lt;/style&gt;
+
+---
 
 # Christina Colwise
 
@@ -39,8 +47,6 @@ class: center, middle
 
 ---
 
-class: center, middle
-
 # Christina Colwise
 
 .pull-left[
@@ -57,8 +63,6 @@ Words
 ]
 
 ---
-
-class: center, middle
 
 # Christina Colwise
 
@@ -77,8 +81,6 @@ Words
 
 ---
 
-class: center, middle
-
 # Christina Colwise
 
 .pull-left[
@@ -96,33 +98,116 @@ Words
 
 ---
 
+# Column-wise operations
+
+e.g. Create a new column with `mutate()`
+
+![](../img/mutate1.png)
+
+---
+
+# Palmer Penguins
+
 
 ```r
 library(tidyverse)
 library(palmerpenguins)
 ```
 
+.pull-left[
+
+&lt;img src="../img/penguins_hex.png" width="75%" /&gt;
+
+]
+
+.pull-right[ 
 
 ```r
-print(penguins)
+glimpse(penguins)
 ```
 
 ```
-## # A tibble: 344 x 8
-##    species island bill_length_mm bill_depth_mm flipper_length_… body_mass_g
-##    &lt;fct&gt;   &lt;fct&gt;           &lt;dbl&gt;         &lt;dbl&gt;            &lt;int&gt;       &lt;int&gt;
-##  1 Adelie  Torge…           39.1          18.7              181        3750
-##  2 Adelie  Torge…           39.5          17.4              186        3800
-##  3 Adelie  Torge…           40.3          18                195        3250
-##  4 Adelie  Torge…           NA            NA                 NA          NA
-##  5 Adelie  Torge…           36.7          19.3              193        3450
-##  6 Adelie  Torge…           39.3          20.6              190        3650
-##  7 Adelie  Torge…           38.9          17.8              181        3625
-##  8 Adelie  Torge…           39.2          19.6              195        4675
-##  9 Adelie  Torge…           34.1          18.1              193        3475
-## 10 Adelie  Torge…           42            20.2              190        4250
-## # … with 334 more rows, and 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;
+## Rows: 344
+## Columns: 8
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adeli…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torger…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0, 37.…
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2, 17.…
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186, 180, 18…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, 4250, 330…
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male, NA, NA,…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2…
 ```
+]
+
+---
+
+# Column-wise operations
+
+Apply a dplyr function to a **single** column.
+
+&lt;img src="../img/mutate1.png" width="40%" /&gt;
+
+--
+
+e.g. Use `mutate()` to create a new column in `penguins` that represents standardized bill length
+
+
+```r
+penguins %&gt;% 
+  mutate(bill_length_mm_z = scale(bill_length_mm))
+```
+
+---
+
+# Column-wise operations
+
+Apply a `dplyr` function to **multiple columns** at once?
+
+&lt;img src="../img/mutate3.png" width="40%" /&gt;
+
+--
+
+e.g. Use `mutate()` to create a new column in `penguins` that represents standardized values for all body dimensions?
+
+
+```r
+penguins %&gt;% 
+  mutate(bill_length_mm_z = scale(bill_length_mm),
+         bill_depth_mm_z = scale(bill_depth_mm),
+         flipper_length_mm_z = scale(flipper_length_mm))
+```
+
+
+---
+
+
+```r
+# penguins %&gt;% 
+#   mutate(bill_length_in = bill_length_mm * .04)
+
+# penguins %&gt;% 
+#   mutate(across(.cols = ends_with("_mm"), .fns = ~.x * .04))
+# 
+# mm_to_in &lt;- function(x) {x * .04}
+
+# penguins %&gt;% 
+#   mutate(across(.cols = ends_with("_mm"), .fns = ~.x *.04, .names = str_subset("{col}", 1, 4)))
+
+# penguins %&gt;% 
+#   mutate(across(.cols = ends_with("_mm"), .fns = ~.x *.04, .names = c("bill_length_in", "bill_depth_in", "flipper_length_in")))
+```
+
+
+---
+
+# Column-wise operations
+
+Apply a `dplyr` function to a specific subset of columns at once?
+
+![](../img/mutate3.png)
+
+---
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

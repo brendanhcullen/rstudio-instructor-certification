@@ -1,5 +1,6 @@
 ---
-title: "Column-wise operations with `dplyr`"
+title: "Column-wise operations with"
+subtitle: "`dplyr`"
 author: "Brendan Cullen"
 date: "08/28/20"
 output:
@@ -9,7 +10,14 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
-class: center, middle
+
+```{css, echo=FALSE}
+pre {
+  overflow-x: scroll;
+}
+```
+
+---
 
 # Christina Colwise
 
@@ -30,8 +38,6 @@ class: center, middle
 
 ---
 
-class: center, middle
-
 # Christina Colwise
 
 .pull-left[
@@ -48,8 +54,6 @@ Words
 ]
 
 ---
-
-class: center, middle
 
 # Christina Colwise
 
@@ -68,8 +72,6 @@ Words
 
 ---
 
-class: center, middle
-
 # Christina Colwise
 
 .pull-left[
@@ -87,9 +89,103 @@ Words
 
 ---
 
+# Column-wise operations
+
+e.g. Create a new column with `mutate()`
+
+![](../img/mutate1.png)
+
+---
+
+# Palmer Penguins
+
 ```{r warning=FALSE, message=FALSE}
 library(tidyverse)
 library(palmerpenguins)
 ```
+
+.pull-left[
+
+```{r echo = FALSE, out.width = "75%"}
+knitr::include_graphics("../img/penguins_hex.png")
+```
+
+]
+
+.pull-right[ 
+```{r}
+glimpse(penguins)
+```
+]
+
+---
+
+# Column-wise operations
+
+Apply a dplyr function to a **single** column.
+
+```{r echo = FALSE, out.width = "40%"}
+knitr::include_graphics("../img/mutate1.png")
+```
+
+--
+
+e.g. Use `mutate()` to create a new column in `penguins` that represents standardized bill length
+
+```{r eval=FALSE}
+penguins %>% 
+  mutate(bill_length_mm_z = scale(bill_length_mm))
+```
+
+---
+
+# Column-wise operations
+
+Apply a `dplyr` function to **multiple columns** at once?
+
+```{r echo = FALSE, out.width = "40%"}
+knitr::include_graphics("../img/mutate3.png")
+```
+
+--
+
+e.g. Use `mutate()` to create a new column in `penguins` that represents standardized values for all body dimensions?
+
+```{r eval=FALSE}
+penguins %>% 
+  mutate(bill_length_mm_z = scale(bill_length_mm),
+         bill_depth_mm_z = scale(bill_depth_mm),
+         flipper_length_mm_z = scale(flipper_length_mm))
+```
+
+
+---
+
+```{r}
+# penguins %>% 
+#   mutate(bill_length_in = bill_length_mm * .04)
+
+# penguins %>% 
+#   mutate(across(.cols = ends_with("_mm"), .fns = ~.x * .04))
+# 
+# mm_to_in <- function(x) {x * .04}
+
+# penguins %>% 
+#   mutate(across(.cols = ends_with("_mm"), .fns = ~.x *.04, .names = str_subset("{col}", 1, 4)))
+
+# penguins %>% 
+#   mutate(across(.cols = ends_with("_mm"), .fns = ~.x *.04, .names = c("bill_length_in", "bill_depth_in", "flipper_length_in")))
+```
+
+
+---
+
+# Column-wise operations
+
+Apply a `dplyr` function to a specific subset of columns at once?
+
+![](../img/mutate3.png)
+
+---
 
 
