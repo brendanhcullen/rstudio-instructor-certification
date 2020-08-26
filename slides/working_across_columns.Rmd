@@ -225,10 +225,11 @@ penguins %>%
 ]
 
 ---
+name: better way
+
 # A better way!
 
 .pull-left[
-
 .center[
 ## `dplyr` < 1.0.0
 ```{r echo = FALSE, out.width = "50%"}
@@ -236,6 +237,7 @@ knitr::include_graphics("../img/dplyr_hex_old.png")
 ```
 
 `summarize_at()`, `summarize_if()`, `summarize_all()`, `mutate_if()`, `mutate_at()`, `mutate_all()`, ...
+##`r emo::ji("sweat")`
 ]
 ]
 
@@ -247,6 +249,8 @@ knitr::include_graphics("../img/dplyr_hex_new.png")
 ```
 
 `across()`
+<br><br><br>
+##`r emo::ji("sunglasses")`
 ]
 ]
 
@@ -255,15 +259,27 @@ knitr::include_graphics("../img/dplyr_hex_new.png")
 # `dplyr::across()`
 
 ![](../img/dplyr_across_blank.png)
-
----
+.pull-right[Artwork by @allison_horst]
 
 ---
 
 # `dplyr::across()`
 
 ![](../img/dplyr_across.png)
+.pull-right[Artwork by @allison_horst]
+---
+
+# `dplyr::across()`
+
+## Example
+
+```{r message=FALSE}
+penguins %>% 
+  group_by(species) %>% 
+  summarize(across(where(is.numeric), mean, na.rm = TRUE))
+```
 
 ---
 
+---
 
