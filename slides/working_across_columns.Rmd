@@ -177,12 +177,13 @@ knitr::include_graphics("../img/summarize.png")
 .panelset[
 
 .panel[.panel-name[Example #1]
-e.g. Use `summarize()` to calculate the mean value of all bill dimensions (`bill_length`, `bill_depth`)
+e.g. Use `summarize()` to calculate the mean value of **all bill dimensions** (`bill_length`, `bill_depth`) for each species.
 ]
 
 .panel[.panel-name[Code]
 ```{r eval=FALSE}
 penguins %>% 
+  group_by(species) %>% 
   summarize_at(vars(starts_with("bill")), mean, na.rm = TRUE)
 ```
 ]
@@ -190,6 +191,7 @@ penguins %>%
 .panel[.panel-name[Output]
 ```{r echo=FALSE, message=FALSE}
 penguins %>% 
+  group_by(species) %>% 
   summarize_at(vars(starts_with("bill")), mean, na.rm = TRUE)
 ```
 ]
@@ -202,12 +204,13 @@ template: multiple columns
 .panelset[
 
 .panel[.panel-name[Example #2]
-e.g. Use `summarize()` to calculate the mean value of all *numeric* variables.
+e.g. Use `summarize()` to calculate the mean value of **all numeric** variables for each species.
 ]
 
 .panel[.panel-name[Code]
 ```{r eval=FALSE}
 penguins %>% 
+  group_by(species) %>% 
   summarize_if(is.numeric, mean, na.rm = TRUE)
 ```
 ]
@@ -215,11 +218,52 @@ penguins %>%
 .panel[.panel-name[Output]
 ```{r echo=FALSE, message=FALSE}
 penguins %>% 
+  group_by(species) %>% 
   summarize_if(is.numeric, mean, na.rm = TRUE)
 ```
 ]
 ]
 
+---
+# A better way!
 
+.pull-left[
+
+.center[
+## `dplyr` < 1.0.0
+```{r echo = FALSE, out.width = "50%"}
+knitr::include_graphics("../img/dplyr_hex_old.png")
+```
+
+`summarize_at()`, `summarize_if()`, `summarize_all()`, `mutate_if()`, `mutate_at()`, `mutate_all()`, ...
+]
+]
+
+.pull-right[
+.center[
+## `dplyr` >= 1.0.0
+```{r echo = FALSE, out.width = "50%"}
+knitr::include_graphics("../img/dplyr_hex_new.png")
+```
+
+`across()`
+]
+]
+
+---
+
+# `dplyr::across()`
+
+![](../img/dplyr_across_blank.png)
+
+---
+
+---
+
+# `dplyr::across()`
+
+![](../img/dplyr_across.png)
+
+---
 
 

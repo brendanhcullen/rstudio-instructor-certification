@@ -131,14 +131,14 @@ glimpse(penguins)
 ```
 ## Rows: 344
 ## Columns: 8
-## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie,…
-## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, To…
-## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0, 37.8, 37.8, 41.1, 38.…
-## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2, 17.1, 17.3, 17.6, 21.…
-## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186, 180, 182, 191, 198, 185, …
-## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, 4250, 3300, 3700, 3200, 380…
-## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male, NA, NA, NA, NA, female, m…
-## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2…
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torgersen…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0, 37.8, 37.8, 41.1, 38.6, 34.6, 36.6, 38.7, 42.5, 34…
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2, 17.1, 17.3, 17.6, 21.2, 21.1, 17.8, 19.0, 20.7, 18…
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186, 180, 182, 191, 198, 185, 195, 197, 184, 194, 174, 180,…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, 4250, 3300, 3700, 3200, 3800, 4400, 3700, 3450, 4500, 33…
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male, NA, NA, NA, NA, female, male, male, female, female, ma…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, …
 ```
 
 ---
@@ -195,13 +195,14 @@ Apply `summarize()` to **multiple columns** at once
 .panelset[
 
 .panel[.panel-name[Example #1]
-e.g. Use `summarize()` to calculate the mean value of all bill dimensions (`bill_length`, `bill_depth`)
+e.g. Use `summarize()` to calculate the mean value of **all bill dimensions** (`bill_length`, `bill_depth`) for each species.
 ]
 
 .panel[.panel-name[Code]
 
 ```r
 penguins %&gt;% 
+  group_by(species) %&gt;% 
   summarize_at(vars(starts_with("bill")), mean, na.rm = TRUE)
 ```
 ]
@@ -209,10 +210,12 @@ penguins %&gt;%
 .panel[.panel-name[Output]
 
 ```
-## # A tibble: 1 x 2
-##   bill_length_mm bill_depth_mm
-##            &lt;dbl&gt;         &lt;dbl&gt;
-## 1           43.9          17.2
+## # A tibble: 3 x 3
+##   species   bill_length_mm bill_depth_mm
+##   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;
+## 1 Adelie              38.8          18.3
+## 2 Chinstrap           48.8          18.4
+## 3 Gentoo              47.5          15.0
 ```
 ]
 ]
@@ -224,13 +227,14 @@ template: multiple columns
 .panelset[
 
 .panel[.panel-name[Example #2]
-e.g. Use `summarize()` to calculate the mean value of all *numeric* variables.
+e.g. Use `summarize()` to calculate the mean value of **all numeric** variables for each species.
 ]
 
 .panel[.panel-name[Code]
 
 ```r
 penguins %&gt;% 
+  group_by(species) %&gt;% 
   summarize_if(is.numeric, mean, na.rm = TRUE)
 ```
 ]
@@ -238,13 +242,53 @@ penguins %&gt;%
 .panel[.panel-name[Output]
 
 ```
-## # A tibble: 1 x 5
-##   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
-##            &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
-## 1           43.9          17.2              201.       4202. 2008.
+## # A tibble: 3 x 6
+##   species   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
+##   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+## 1 Adelie              38.8          18.3              190.       3701. 2008.
+## 2 Chinstrap           48.8          18.4              196.       3733. 2008.
+## 3 Gentoo              47.5          15.0              217.       5076. 2008.
 ```
 ]
 ]
+
+---
+# A better way!
+
+.pull-left[
+
+.center[
+## `dplyr` &lt; 1.0.0
+&lt;img src="../img/dplyr_hex_old.png" width="50%" /&gt;
+
+`summarize_at()`, `summarize_if()`, `summarize_all()`, `mutate_if()`, `mutate_at()`, `mutate_all()`, ...
+]
+]
+
+.pull-right[
+.center[
+## `dplyr` &gt;= 1.0.0
+&lt;img src="../img/dplyr_hex_new.png" width="50%" /&gt;
+
+`across()`
+]
+]
+
+---
+
+# `dplyr::across()`
+
+![](../img/dplyr_across_blank.png)
+
+---
+
+---
+
+# `dplyr::across()`
+
+![](../img/dplyr_across.png)
+
+---
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
