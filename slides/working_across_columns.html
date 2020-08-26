@@ -111,7 +111,7 @@ e.g. Create a new column with `mutate()`
 
 e.g. Summarize data with `summarize()`
 
-&lt;img src="../img/summarize.png" width="40%" /&gt;
+&lt;img src="../img/summarize_multiple.png" width="40%" /&gt;
 
 ---
 
@@ -147,7 +147,7 @@ glimpse(penguins)
 
 Apply `summarize()` to a **single** column.
 
-&lt;img src="../img/summarize.png" width="20%" /&gt;
+&lt;img src="../img/summarize_single.png" width="20%" /&gt;
 
 --
 
@@ -188,14 +188,14 @@ name: multiple columns
 
 Apply `summarize()` to **multiple columns** at once
 
-&lt;img src="../img/summarize.png" width="20%" /&gt;
+&lt;img src="../img/summarize_multiple.png" width="20%" /&gt;
 
 --
 
 .panelset[
 
 .panel[.panel-name[Example #1]
-e.g. Use `summarize()` to calculate the mean value of **all bill dimensions** (`bill_length`, `bill_depth`) for each species.
+e.g. Calculate the mean value of **all bill dimensions** (i.e. `bill_length`, `bill_depth`) for each species.
 ]
 
 .panel[.panel-name[Code]
@@ -203,9 +203,12 @@ e.g. Use `summarize()` to calculate the mean value of **all bill dimensions** (`
 ```r
 penguins %&gt;% 
   group_by(species) %&gt;% 
-  summarize_at(vars(starts_with("bill")), mean, na.rm = TRUE)
+  summarize_at(vars(c(bill_length_mm, bill_depth_mm)), mean, na.rm = TRUE)
 ```
+
+`summarize_at()` is an example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a specific set of multiple columns at once. 
 ]
+
 
 .panel[.panel-name[Output]
 
@@ -223,11 +226,10 @@ penguins %&gt;%
 ---
 template: multiple columns
 
-
 .panelset[
 
 .panel[.panel-name[Example #2]
-e.g. Use `summarize()` to calculate the mean value of **all numeric** variables for each species.
+e.g. Calculate the mean value of **all numeric** variables for each species.
 ]
 
 .panel[.panel-name[Code]
@@ -237,6 +239,9 @@ penguins %&gt;%
   group_by(species) %&gt;% 
   summarize_if(is.numeric, mean, na.rm = TRUE)
 ```
+
+`summarize_if()` is another example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a set of columns that all satisfy some logical criteria. That logical criteria is specified by a **predicate function**, e.g. `is.numeric()`. 
+
 ]
 
 .panel[.panel-name[Output]
@@ -251,11 +256,15 @@ penguins %&gt;%
 ```
 ]
 ]
+---
+# Your Turn
 
+Formative assessment #1?
+Link to learnR app here
 ---
 name: better way
 
-# A better way!
+# A better way?
 
 .pull-left[
 .center[
@@ -266,6 +275,8 @@ name: better way
 ##😓
 ]
 ]
+
+--
 
 .pull-right[
 .center[
@@ -293,27 +304,69 @@ name: better way
 .pull-right[Artwork by @allison_horst]
 ---
 
+# dplyr::across()
+
+
+```r
+across(.cols = everything(), .fns = NULL, ..., .names = NULL)
+```
+
+`.cols` = the columns you want to transform
+
+`.fns` = the function(s) you want to apply to each of the selected columns
+
+`...` = additional arguments for the function(s) specified in `.fns`
+
+`.names` = a `glue` specification that describes how you want to name the output columns of your transformation
+---
 # `dplyr::across()`
 
-## Example
 
+```r
+across(.cols = everything(), .fns = NULL, ..., .names = NULL)
+```
+
+
+.panelset[
+
+.panel[.panel-name[Example]
+Use `across()` to calculate the mean of all numeric columns for each species in `penguins`
+]
+
+.panel[.panel-name[Code]
 
 ```r
 penguins %&gt;% 
   group_by(species) %&gt;% 
-  summarize(across(where(is.numeric), mean, na.rm = TRUE))
+  summarize(across(where(is.numeric), mean, na.rm = TRUE, .names = "{col}_mean"))
 ```
+
+`where()` is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as `is.numeric()`, returns `TRUE`. 
+
+You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here.](https://dplyr.tidyverse.org/reference/select.html)
+
+]
+
+.panel[.panel-name[Output]
 
 ```
 ## # A tibble: 3 x 6
-##   species   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
-##   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
-## 1 Adelie              38.8          18.3              190.       3701. 2008.
-## 2 Chinstrap           48.8          18.4              196.       3733. 2008.
-## 3 Gentoo              47.5          15.0              217.       5076. 2008.
+##   species bill_length_mm_… bill_depth_mm_m… flipper_length_… body_mass_g_mean
+##   &lt;fct&gt;              &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 Adelie              38.8             18.3             190.            3701.
+## 2 Chinst…             48.8             18.4             196.            3733.
+## 3 Gentoo              47.5             15.0             217.            5076.
+## # … with 1 more variable: year_mean &lt;dbl&gt;
 ```
+]
+]
 
 ---
+# Your Turn
+
+Link to learnR app here
+
+
 
 ---
     </textarea>
