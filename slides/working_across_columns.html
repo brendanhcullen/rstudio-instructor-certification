@@ -123,13 +123,6 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
-.pull-left[
-
-&lt;img src="../img/penguins_hex.png" width="50%" /&gt;
-
-]
-
-.pull-right[ 
 
 ```r
 glimpse(penguins)
@@ -138,31 +131,30 @@ glimpse(penguins)
 ```
 ## Rows: 344
 ## Columns: 8
-## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Ade…
-## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgers…
-## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1,…
-## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1,…
-## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 18…
-## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475,…
-## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, mal…
-## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 200…
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie,…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, To…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0, 37.8, 37.8, 41.1, 38.…
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2, 17.1, 17.3, 17.6, 21.…
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186, 180, 182, 191, 198, 185, …
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, 4250, 3300, 3700, 3200, 380…
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male, NA, NA, NA, NA, female, m…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2…
 ```
-]
 
 ---
 
 # Column-wise operations
 
-Apply `mutate()` to a **single** column.
+Apply `summarize()` to a **single** column.
 
-&lt;img src="../img/mutate1.png" width="40%" /&gt;
+&lt;img src="../img/summarize.png" width="20%" /&gt;
 
 --
 
 .panelset[
 
 .panel[.panel-name[Example]
-Use `mutate()` to create a new column in `penguins` that represents *standardized* bill length
+Use `summarize()` to calculate the mean `bill length` for each `species` in the `penguins` dataset
 ]
 
 .panel[.panel-name[Code]
@@ -170,8 +162,8 @@ Use `mutate()` to create a new column in `penguins` that represents *standardize
 
 ```r
 penguins %&gt;% 
-* mutate(bill_length_mm_z = scale(bill_length_mm)) %&gt;%
-  glimpse()
+  group_by(species) %&gt;% 
+* summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE))
 ```
 ]
 
@@ -179,17 +171,12 @@ penguins %&gt;%
 
 
 ```
-## Rows: 344
-## Columns: 9
-## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Ade…
-## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgers…
-## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1,…
-## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1,…
-## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 18…
-## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475,…
-## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, mal…
-## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 200…
-## $ bill_length_mm_z  &lt;dbl&gt; -0.8832047, -0.8099390, -0.6634077, NA, -1.3227986,…
+## # A tibble: 3 x 2
+##   species   mean_bill_length
+##   &lt;fct&gt;                &lt;dbl&gt;
+## 1 Adelie                38.8
+## 2 Chinstrap             48.8
+## 3 Gentoo                47.5
 ```
 
 ]
@@ -199,82 +186,65 @@ name: multiple columns
 
 # Column-wise operations
 
-Apply `mutate()` function to **multiple columns** at once?
+Apply `summarize()` to **multiple columns** at once
 
-&lt;img src="../img/mutate3.png" width="40%" /&gt;
+&lt;img src="../img/summarize.png" width="20%" /&gt;
 
 --
 
-e.g. Use `mutate()` to create new columns in `penguins` that represent standardized values for all body dimensions (`bill_length`, `bill_depth`, `flipper_length`)
+.panelset[
 
+.panel[.panel-name[Example #1]
+e.g. Use `summarize()` to calculate the mean value of all bill dimensions (`bill_length`, `bill_depth`)
+]
 
-```r
-penguins %&gt;% 
-  mutate_at(vars(c("bill_length_mm", "bill_depth_mm", "flipper_length_mm")), list(scale = scale)) %&gt;% names()
-```
-
-```
-##  [1] "species"                 "island"                 
-##  [3] "bill_length_mm"          "bill_depth_mm"          
-##  [5] "flipper_length_mm"       "body_mass_g"            
-##  [7] "sex"                     "year"                   
-##  [9] "bill_length_mm_scale"    "bill_depth_mm_scale"    
-## [11] "flipper_length_mm_scale"
-```
+.panel[.panel-name[Code]
 
 ```r
 penguins %&gt;% 
-  mutate_at(vars(ends_with("_mm")), list(scale = scale)) %&gt;% glimpse()
+  summarize_at(vars(starts_with("bill")), mean, na.rm = TRUE)
 ```
+]
+
+.panel[.panel-name[Output]
 
 ```
-## Rows: 344
-## Columns: 11
-## $ species                 &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adeli…
-## $ island                  &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, T…
-## $ bill_length_mm          &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2,…
-## $ bill_depth_mm           &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6,…
-## $ flipper_length_mm       &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 1…
-## $ body_mass_g             &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675,…
-## $ sex                     &lt;fct&gt; male, female, female, NA, female, male, femal…
-## $ year                    &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 200…
-## $ bill_length_mm_scale    &lt;dbl[,1]&gt; &lt;matrix[26 x 1]&gt;
-## $ bill_depth_mm_scale     &lt;dbl[,1]&gt; &lt;matrix[26 x 1]&gt;
-## $ flipper_length_mm_scale &lt;dbl[,1]&gt; &lt;matrix[26 x 1]&gt;
+## # A tibble: 1 x 2
+##   bill_length_mm bill_depth_mm
+##            &lt;dbl&gt;         &lt;dbl&gt;
+## 1           43.9          17.2
 ```
-
-
-
-```r
-penguins %&gt;% 
-  mutate(bill_length_mm_z = scale(bill_length_mm),
-         bill_depth_mm_z = scale(bill_depth_mm),
-         flipper_length_mm_z = scale(flipper_length_mm))
-```
+]
+]
 
 ---
 template: multiple columns
----
 
+
+.panelset[
+
+.panel[.panel-name[Example #2]
+e.g. Use `summarize()` to calculate the mean value of all *numeric* variables.
+]
+
+.panel[.panel-name[Code]
 
 ```r
-# penguins %&gt;% 
-#   mutate(bill_length_in = bill_length_mm * .04)
-
-# penguins %&gt;% 
-#   mutate(across(.cols = ends_with("_mm"), .fns = ~.x * .04))
-# 
-# mm_to_in &lt;- function(x) {x * .04}
-
-# penguins %&gt;% 
-#   mutate(across(.cols = ends_with("_mm"), .fns = ~.x *.04, .names = str_subset("{col}", 1, 4)))
-
-# penguins %&gt;% 
-#   mutate(across(.cols = ends_with("_mm"), .fns = ~.x *.04, .names = c("bill_length_in", "bill_depth_in", "flipper_length_in")))
+penguins %&gt;% 
+  summarize_if(is.numeric, mean, na.rm = TRUE)
 ```
+]
 
+.panel[.panel-name[Output]
 
----
+```
+## # A tibble: 1 x 5
+##   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g  year
+##            &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+## 1           43.9          17.2              201.       4202. 2008.
+```
+]
+]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
