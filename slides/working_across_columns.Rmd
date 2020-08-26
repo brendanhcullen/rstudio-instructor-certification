@@ -11,13 +11,21 @@ output:
       countIncrementalSlides: false
 ---
 
+```{r setup, echo=FALSE}
+library(xaringanExtra)
+
+```
+
+```{r xaringan-panelset, echo=FALSE}
+xaringanExtra::use_panelset()
+```
+
 ```{css, echo=FALSE}
 pre {
+  max-width: 100%;
   overflow-x: scroll;
 }
 ```
-
----
 
 # Christina Colwise
 
@@ -30,10 +38,7 @@ pre {
 .pull-right[
 ## General Background
 
-.left[
-- Words 
-- More words
-]
+- First-generation student part-way through her first year of a Psychology PhD program
 ]
 
 ---
@@ -49,8 +54,9 @@ pre {
 .pull-right[
 ## Starting Point
 
-Words 
+- Has introductory working knowledge of the tidyverse
 
+- Frequently uses common `dplyr` verbs for simple data transformations, e.g. creating new variables, summarizing data
 ]
 
 ---
@@ -66,8 +72,7 @@ Words
 .pull-right[
 ## Needs
 
-Words 
-
+- Wants to do more complex operations with `dplyr` verbs, e.g. apply data transformations to multiple columns at the same time
 ]
 
 ---
@@ -83,8 +88,11 @@ Words
 .pull-right[
 ## Special Considerations
 
-Words 
+- Works a full-time job during grad school
 
+- Balances a heavy coursehold and has limited bandwidth to learn new things
+
+- Wants to learn functions she can apply right away for analyzing data for her first year project 
 ]
 
 ---
@@ -93,7 +101,15 @@ Words
 
 e.g. Create a new column with `mutate()`
 
-![](../img/mutate1.png)
+```{r echo = FALSE, out.width = "40%"}
+knitr::include_graphics("../img/mutate1.png")
+```
+
+e.g. Summarize data with `summarize()`
+
+```{r echo = FALSE, out.width = "40%"}
+knitr::include_graphics("../img/summarize.png")
+```
 
 ---
 
@@ -106,7 +122,7 @@ library(palmerpenguins)
 
 .pull-left[
 
-```{r echo = FALSE, out.width = "75%"}
+```{r echo = FALSE, out.width = "50%"}
 knitr::include_graphics("../img/penguins_hex.png")
 ```
 
@@ -122,7 +138,7 @@ glimpse(penguins)
 
 # Column-wise operations
 
-Apply a dplyr function to a **single** column.
+Apply `mutate()` to a **single** column.
 
 ```{r echo = FALSE, out.width = "40%"}
 knitr::include_graphics("../img/mutate1.png")
@@ -130,18 +146,37 @@ knitr::include_graphics("../img/mutate1.png")
 
 --
 
-e.g. Use `mutate()` to create a new column in `penguins` that represents standardized bill length
+.panelset[
 
-```{r eval=FALSE}
+.panel[.panel-name[Example]
+Use `mutate()` to create a new column in `penguins` that represents *standardized* bill length
+]
+
+.panel[.panel-name[Code]
+
+```{r mutate-one-col, eval=FALSE}
 penguins %>% 
-  mutate(bill_length_mm_z = scale(bill_length_mm))
+  mutate(bill_length_mm_z = scale(bill_length_mm)) %>% #<<
+  glimpse()
+```
+]
+
+.panel[.panel-name[Output]
+
+```{r echo = FALSE}
+penguins %>% 
+  mutate(bill_length_mm_z = as.numeric(scale(bill_length_mm))) %>% 
+  glimpse()
 ```
 
+]
+]
 ---
+name: multiple columns
 
 # Column-wise operations
 
-Apply a `dplyr` function to **multiple columns** at once?
+Apply `mutate()` function to **multiple columns** at once?
 
 ```{r echo = FALSE, out.width = "40%"}
 knitr::include_graphics("../img/mutate3.png")
@@ -149,7 +184,16 @@ knitr::include_graphics("../img/mutate3.png")
 
 --
 
-e.g. Use `mutate()` to create a new column in `penguins` that represents standardized values for all body dimensions?
+e.g. Use `mutate()` to create new columns in `penguins` that represent standardized values for all body dimensions (`bill_length`, `bill_depth`, `flipper_length`)
+
+```{r}
+penguins %>% 
+  mutate_at(vars(c("bill_length_mm", "bill_depth_mm", "flipper_length_mm")), list(scale = scale)) %>% names()
+
+penguins %>% 
+  mutate_at(vars(ends_with("_mm")), list(scale = scale)) %>% glimpse()
+```
+
 
 ```{r eval=FALSE}
 penguins %>% 
@@ -158,7 +202,8 @@ penguins %>%
          flipper_length_mm_z = scale(flipper_length_mm))
 ```
 
-
+---
+template: multiple columns
 ---
 
 ```{r}
@@ -180,12 +225,6 @@ penguins %>%
 
 ---
 
-# Column-wise operations
 
-Apply a `dplyr` function to a specific subset of columns at once?
-
-![](../img/mutate3.png)
-
----
 
 

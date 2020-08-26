@@ -7,6 +7,8 @@
     <meta name="date" content="2020-08-28" />
     <link href="working_across_columns_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="working_across_columns_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <link href="working_across_columns_files/panelset-0.2.1/panelset.css" rel="stylesheet" />
+    <script src="working_across_columns_files/panelset-0.2.1/panelset.js"></script>
   </head>
   <body>
     <textarea id="source">
@@ -20,13 +22,16 @@ class: center, middle, inverse, title-slide
 ---
 
 
+
+
+
+
 &lt;style type="text/css"&gt;
 pre {
+  max-width: 100%;
   overflow-x: scroll;
 }
 &lt;/style&gt;
-
----
 
 # Christina Colwise
 
@@ -39,10 +44,7 @@ pre {
 .pull-right[
 ## General Background
 
-.left[
-- Words 
-- More words
-]
+- First-generation student part-way through her first year of a Psychology PhD program
 ]
 
 ---
@@ -58,8 +60,9 @@ pre {
 .pull-right[
 ## Starting Point
 
-Words 
+- Has introductory working knowledge of the tidyverse
 
+- Frequently uses common `dplyr` verbs for simple data transformations, e.g. creating new variables, summarizing data
 ]
 
 ---
@@ -75,8 +78,7 @@ Words
 .pull-right[
 ## Needs
 
-Words 
-
+- Wants to do more complex operations with `dplyr` verbs, e.g. apply data transformations to multiple columns at the same time
 ]
 
 ---
@@ -92,8 +94,11 @@ Words
 .pull-right[
 ## Special Considerations
 
-Words 
+- Works a full-time job during grad school
 
+- Balances a heavy coursehold and has limited bandwidth to learn new things
+
+- Wants to learn functions she can apply right away for analyzing data for her first year project 
 ]
 
 ---
@@ -102,7 +107,11 @@ Words
 
 e.g. Create a new column with `mutate()`
 
-![](../img/mutate1.png)
+&lt;img src="../img/mutate1.png" width="40%" /&gt;
+
+e.g. Summarize data with `summarize()`
+
+&lt;img src="../img/summarize.png" width="40%" /&gt;
 
 ---
 
@@ -116,7 +125,7 @@ library(palmerpenguins)
 
 .pull-left[
 
-&lt;img src="../img/penguins_hex.png" width="75%" /&gt;
+&lt;img src="../img/penguins_hex.png" width="50%" /&gt;
 
 ]
 
@@ -129,14 +138,14 @@ glimpse(penguins)
 ```
 ## Rows: 344
 ## Columns: 8
-## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adeli…
-## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torger…
-## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0, 37.…
-## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2, 17.…
-## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186, 180, 18…
-## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, 4250, 330…
-## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male, NA, NA,…
-## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2…
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Ade…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgers…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1,…
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1,…
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 18…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475,…
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, mal…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 200…
 ```
 ]
 
@@ -144,31 +153,96 @@ glimpse(penguins)
 
 # Column-wise operations
 
-Apply a dplyr function to a **single** column.
+Apply `mutate()` to a **single** column.
 
 &lt;img src="../img/mutate1.png" width="40%" /&gt;
 
 --
 
-e.g. Use `mutate()` to create a new column in `penguins` that represents standardized bill length
+.panelset[
+
+.panel[.panel-name[Example]
+Use `mutate()` to create a new column in `penguins` that represents *standardized* bill length
+]
+
+.panel[.panel-name[Code]
 
 
 ```r
 penguins %&gt;% 
-  mutate(bill_length_mm_z = scale(bill_length_mm))
+* mutate(bill_length_mm_z = scale(bill_length_mm)) %&gt;%
+  glimpse()
+```
+]
+
+.panel[.panel-name[Output]
+
+
+```
+## Rows: 344
+## Columns: 9
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Ade…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgers…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1,…
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1,…
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 18…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475,…
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, mal…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 200…
+## $ bill_length_mm_z  &lt;dbl&gt; -0.8832047, -0.8099390, -0.6634077, NA, -1.3227986,…
 ```
 
+]
+]
 ---
+name: multiple columns
 
 # Column-wise operations
 
-Apply a `dplyr` function to **multiple columns** at once?
+Apply `mutate()` function to **multiple columns** at once?
 
 &lt;img src="../img/mutate3.png" width="40%" /&gt;
 
 --
 
-e.g. Use `mutate()` to create a new column in `penguins` that represents standardized values for all body dimensions?
+e.g. Use `mutate()` to create new columns in `penguins` that represent standardized values for all body dimensions (`bill_length`, `bill_depth`, `flipper_length`)
+
+
+```r
+penguins %&gt;% 
+  mutate_at(vars(c("bill_length_mm", "bill_depth_mm", "flipper_length_mm")), list(scale = scale)) %&gt;% names()
+```
+
+```
+##  [1] "species"                 "island"                 
+##  [3] "bill_length_mm"          "bill_depth_mm"          
+##  [5] "flipper_length_mm"       "body_mass_g"            
+##  [7] "sex"                     "year"                   
+##  [9] "bill_length_mm_scale"    "bill_depth_mm_scale"    
+## [11] "flipper_length_mm_scale"
+```
+
+```r
+penguins %&gt;% 
+  mutate_at(vars(ends_with("_mm")), list(scale = scale)) %&gt;% glimpse()
+```
+
+```
+## Rows: 344
+## Columns: 11
+## $ species                 &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adeli…
+## $ island                  &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, T…
+## $ bill_length_mm          &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2,…
+## $ bill_depth_mm           &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6,…
+## $ flipper_length_mm       &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 1…
+## $ body_mass_g             &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675,…
+## $ sex                     &lt;fct&gt; male, female, female, NA, female, male, femal…
+## $ year                    &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 200…
+## $ bill_length_mm_scale    &lt;dbl[,1]&gt; &lt;matrix[26 x 1]&gt;
+## $ bill_depth_mm_scale     &lt;dbl[,1]&gt; &lt;matrix[26 x 1]&gt;
+## $ flipper_length_mm_scale &lt;dbl[,1]&gt; &lt;matrix[26 x 1]&gt;
+```
+
 
 
 ```r
@@ -178,7 +252,8 @@ penguins %&gt;%
          flipper_length_mm_z = scale(flipper_length_mm))
 ```
 
-
+---
+template: multiple columns
 ---
 
 
@@ -198,14 +273,6 @@ penguins %&gt;%
 #   mutate(across(.cols = ends_with("_mm"), .fns = ~.x *.04, .names = c("bill_length_in", "bill_depth_in", "flipper_length_in")))
 ```
 
-
----
-
-# Column-wise operations
-
-Apply a `dplyr` function to a specific subset of columns at once?
-
-![](../img/mutate3.png)
 
 ---
     </textarea>
