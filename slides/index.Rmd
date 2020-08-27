@@ -2,7 +2,6 @@
 title: "Column-wise operations with"
 subtitle: "`dplyr`"
 author: "Brendan Cullen"
-date: "08/28/20"
 output:
   xaringan::moon_reader:
     nature:
