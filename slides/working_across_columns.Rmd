@@ -231,10 +231,16 @@ e.g. Calculate the mean value of **all bill dimensions** (i.e. `bill_length`, `b
 ]
 
 .panel[.panel-name[Code]
-```{r summarize-mult-1, eval=FALSE}
+```{r summarize-mult-1, eval=FALSE, echo = FALSE}
 penguins %>% 
   group_by(species) %>% 
-  summarize_at(vars(c(bill_length_mm, bill_depth_mm)), mean, na.rm = TRUE)
+  summarize_at(vars(c(bill_length_mm, bill_depth_mm)), 
+               mean, na.rm = TRUE)
+```
+
+```{r echo=FALSE}
+decorate("summarize-mult-1", eval = FALSE) %>% 
+  flair("summarize_at")
 ```
 
 `r emo::ji("mag")` `summarize_at()` is an example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a specific set of multiple columns at once. 
@@ -259,10 +265,15 @@ e.g. Calculate the mean value of **all numeric** variables for each species.
 ]
 
 .panel[.panel-name[Code]
-```{r summarize-mult-2, eval=FALSE}
+```{r summarize-mult-2, eval=FALSE, echo=FALSE}
 penguins %>% 
   group_by(species) %>% 
   summarize_if(is.numeric, mean, na.rm = TRUE)
+```
+
+```{r echo=FALSE}
+decorate("summarize-mult-2", eval = FALSE) %>% 
+  flair("summarize_if")
 ```
 
 `r emo::ji("mag")` `summarize_if()` is another example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a set of columns that all satisfy some logical criteria. That logical criteria is specified using a **predicate function**, e.g. `is.numeric()`, which will return `TRUE` or `FALSE`.
