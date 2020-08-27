@@ -237,7 +237,9 @@ penguins %>%
   summarize_at(vars(c(bill_length_mm, bill_depth_mm)), mean, na.rm = TRUE)
 ```
 
-`summarize_at()` is an example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a specific set of multiple columns at once. 
+`r emo::ji("mag")` `summarize_at()` is an example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a specific set of multiple columns at once. 
+
+`r emo::ji("warning")` When using scoped verbs ending in `_at()` you must use `vars()` to select columns.
 ]
 
 
@@ -263,7 +265,7 @@ penguins %>%
   summarize_if(is.numeric, mean, na.rm = TRUE)
 ```
 
-`summarize_if()` is another example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a set of columns that all satisfy some logical criteria. That logical criteria is specified using a **predicate function**, e.g. `is.numeric()`. 
+`r emo::ji("mag")` `summarize_if()` is another example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a set of columns that all satisfy some logical criteria. That logical criteria is specified using a **predicate function**, e.g. `is.numeric()`, which will return `TRUE` or `FALSE`.
 
 ]
 
@@ -390,7 +392,9 @@ Use `across()` to calculate the mean of all numeric columns for each species in 
 ```{r across-example-v1, include = FALSE, message=FALSE}
 penguins %>% 
   group_by(species) %>% 
-  summarize(across(where(is.numeric), mean, na.rm = TRUE, .names = '{col}_mean'))
+  summarize(across(where(is.numeric), 
+                   mean, na.rm = TRUE, 
+                   .names = '{col}_mean'))
 ```
 
 ```{r echo=FALSE, message=FALSE}
@@ -403,11 +407,9 @@ decorate_chunk("across-example-v1", eval = FALSE) %>%
 
 ***
 
-**Note:** 
+`r emo::ji("mag")` <span style="color: cornflowerblue"> `where()` </span> is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as <span style="color: cornflowerblue"> `is.numeric()` </span>, returns `TRUE`. 
 
-<span style="color: cornflowerblue"> `where()` </span> is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as <span style="color: cornflowerblue"> `is.numeric()` </span>, returns `TRUE`. 
-
-You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here](https://dplyr.tidyverse.org/reference/select.html). Also see [here](https://tladeras.shinyapps.io/learning_tidyselect/) for a great interactive tutorial on `tidyselect` by [Ted Laderas](https://laderast.github.io/). 
+`r emo::ji("question")` You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here](https://dplyr.tidyverse.org/reference/select.html). Also see [here](https://tladeras.shinyapps.io/learning_tidyselect/) for a great interactive tutorial on `tidyselect` by [Ted Laderas](https://laderast.github.io/). 
 ]
 
 .panel[.panel-name[Output v1]
@@ -419,7 +421,8 @@ You can use any kind of `tidyselect` helper within `across`. For a full list of 
 ```{r across-example-v2, include = FALSE, message=FALSE}
 penguins %>% 
   group_by(species) %>% 
-  summarize(across(where(is.numeric), list(mean = mean), na.rm = TRUE))
+  summarize(across(where(is.numeric), 
+                   list(mean = mean), na.rm = TRUE))
 ```
 
 ```{r echo=FALSE, message=FALSE}
@@ -432,9 +435,9 @@ decorate_chunk("across-example-v2", eval = FALSE) %>%
 
 ***
 
-**Note:**
+`r emo::ji("mag")` If you specify <span style="color: red"> `.funs` </span> as a named list, e.g. `list(mean = mean)`, then `across()` will automatically append the name of the applied function(s) to the names of the output columns.  
 
-If you specify <span style="color: red"> `.funs` </span> as a named list, e.g. `list(mean = mean)`, then `across()` will automatically append the name of the applied function(s) to the names of the output columns, and you don't have to manually specify a <span style="color: darkorchid"> `.names` </span> argument at all! 
+This way you don't have to manually specify a <span style="color: darkorchid"> `.names` </span> argument at all! 
 ]
 
 
