@@ -245,7 +245,7 @@ decorate("summarize-mult-1", eval = FALSE) %>%
 
 `r emo::ji("mag")` `summarize_at()` is an example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a specific set of multiple columns at once. 
 
-`r emo::ji("warning")` When using scoped verbs ending in `_at()` you must use `vars()` to select columns.
+`r emo::ji("warning")` When using scoped verbs ending in `_at()` you must use `vars()` to select columns. Also notice that `na.rm = TRUE`, an additional argument to `mean()`, is passed as an argument of `summarize_at()`.
 ]
 
 

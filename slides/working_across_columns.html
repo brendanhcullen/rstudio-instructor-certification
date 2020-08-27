@@ -257,7 +257,7 @@ e.g. Calculate the mean value of **all bill dimensions** (i.e. `bill_length`, `b
 
 🔍 `summarize_at()` is an example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a specific set of multiple columns at once. 
 
-⚠️ When using scoped verbs ending in `_at()` you must use `vars()` to select columns.
+⚠️ When using scoped verbs ending in `_at()` you must use `vars()` to select columns. Also notice that `na.rm = TRUE`, an additional argument to `mean()`, is passed as an argument of `summarize_at()`.
 ]
 
 
