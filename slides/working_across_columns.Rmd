@@ -10,6 +10,7 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
+class:inverse
 
 ```{r setup, echo=FALSE}
 library(xaringanExtra)
@@ -33,6 +34,15 @@ pre {
 }
 ```
 
+# Learner Persona: Christina Colwise
+
+<center>
+```{r echo = FALSE, out.width = "60%"}
+knitr::include_graphics("../img/christina_colwise.png")
+```
+</center>
+
+---
 # Christina Colwise
 
 .pull-left[
