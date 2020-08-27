@@ -12,66 +12,39 @@ library(palmerpenguins)
 ```
 
 
-## Topic 1
+## Your Turn #1
 
-### Exercise 
+Take a look at the following code chunk:
 
-*Here's a simple exercise with an empty code chunk provided for entering the answer.*
-
-Write the R code required to add two plus two:
-
-```{r two-plus-two, exercise=TRUE}
-
+```{r question-1-code, eval=FALSE, echo=TRUE}
+penguins %>% 
+  summarize(bill_length_mm = mean(bill_length_mm, na.rm = TRUE),
+            bill_depth_mm = mean(bill_depth_mm, na.rm = TRUE))
 ```
 
-### Exercise with Code
 
-*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
-
-Now write a function that adds any two numbers and then call it:
-
-```{r add-function, exercise=TRUE, exercise.lines = 5}
-add <- function() {
-  
-}
-```
-
-## Topic 2
-
-### Exercise with Hint
-
-*Here's an exercise where the chunk is pre-evaulated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
-
-Modify the following code to limit the number of rows printed to 5:
-
-```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
-mtcars
-```
-
-```{r print-limit-hint}
-head(mtcars)
-```
-
-### Quiz
-
-*You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
-
-Some questions to verify that you understand the purposes of various base and recommended R packages:
-
-```{r quiz}
-quiz(
-  question("Which package contains functions for installing other R packages?",
-    answer("base"),
-    answer("tools"),
-    answer("utils", correct = TRUE),
-    answer("codetools")
-  ),
-  question("Which of the R packages listed below are used to create plots?",
-    answer("lattice", correct = TRUE),
-    answer("tools"),
-    answer("stats"),
-    answer("grid", correct = TRUE)
-  )
+```{r question-1}
+question("Which of the following is equivalent to the code chunk shown above?",
+  # wrong
+  answer("`penguins %>% 
+  summarize_if(vars(c(bill_length_mm, bill_depth_mm)), mean, na.rm = TRUE)`", 
+  message = "Try again! The scoped verb you're looking for is `summarize_at()`"),
+  # wrong
+  answer("`penguins %>% 
+  summarize_at(vars(c(bill_length_mm, bill_depth_mm)), mean)`",
+  message = "Not quite. Don't forget about additional arguments to `mean()` that must be passed through with `...`"),
+  # correct
+  answer("`penguins %>% 
+  summarize_at(vars(c(starts_with('bill'))), mean, na.rm = TRUE)`", correct = TRUE),
+  message = "Nice work! You can use select helpers like `starts_with()` or `contains()` when selecting columns",
+  # wrong
+  answer("`penguins %>% 
+  summarize_at(c(bill_length_mm, bill_depth_mm), mean, na.rm = TRUE)`",
+  message = "Not quite. Remember that the columns selected in `summarize_at()` must be wrapped inside `vars()`")
 )
 ```
+
+## Your Turn # 2
+
+
 
