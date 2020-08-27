@@ -357,12 +357,14 @@ decorate('across(.cols = everything(), .fns = NULL, ..., .names = NULL)', error 
 <br>
 --
 
-<span style="color: orange"> `...` </span> = additional arguments for the function(s) specified in `.fns`
+<span style="color: orange"> `...` </span> = additional arguments for the function(s) specified in `.fns` (e.g. `na.rm = TRUE`)
 
 <br>
 --
 
-<span style="color: darkorchid"> `.names` </span> = a `glue` specification that describes how you want to name the output columns of your transformation
+<span style="color: darkorchid"> `.names` </span> = a `glue` specification that describes how you want to name the output columns, in which `{col}` stands for the selected column name.
+
+e.g. When calculating the mean of `body_mass_g`, `.names = {col}_mean` would result in the output column named `"body_mass_g_mean"`
 
 <br>
 ---
@@ -384,16 +386,15 @@ Use `across()` to calculate the mean of all numeric columns for each species in 
 **Remember:** `across()` goes *inside* of the `dplyr` function that you want to apply to multiple columns
 ]
 
-.panel[.panel-name[Code]
-```{r across-example, include = FALSE, message=FALSE}
+.panel[.panel-name[Code v1]
+```{r across-example-v1, include = FALSE, message=FALSE}
 penguins %>% 
   group_by(species) %>% 
   summarize(across(where(is.numeric), mean, na.rm = TRUE, .names = '{col}_mean'))
 ```
 
 ```{r echo=FALSE, message=FALSE}
-decorate_chunk("across-example", eval = FALSE) %>% 
-  flair("across") %>% 
+decorate_chunk("across-example-v1", eval = FALSE) %>% 
   flair("where(is.numeric)", color = "cornflowerblue") %>% 
   flair_rx(pattern = "mean(?=,)", color = "red") %>% 
   flair("na.rm = TRUE", color = "orange") %>% 
@@ -402,18 +403,43 @@ decorate_chunk("across-example", eval = FALSE) %>%
 
 ***
 
-**Note:** <span style="color: cornflowerblue"> `where()` </span> is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as <span style="color: cornflowerblue"> `is.numeric()` </span>, returns `TRUE`. 
+**Note:** 
 
-You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here](https://dplyr.tidyverse.org/reference/select.html). 
+<span style="color: cornflowerblue"> `where()` </span> is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as <span style="color: cornflowerblue"> `is.numeric()` </span>, returns `TRUE`. 
 
-Also see [here](https://tladeras.shinyapps.io/learning_tidyselect/) for a great interactive tutorial on `tidyselect` by [Ted Laderas](https://laderast.github.io/). 
+You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here](https://dplyr.tidyverse.org/reference/select.html). Also see [here](https://tladeras.shinyapps.io/learning_tidyselect/) for a great interactive tutorial on `tidyselect` by [Ted Laderas](https://laderast.github.io/). 
+]
+
+.panel[.panel-name[Output v1]
+```{r ref.label="across-example-v1", echo=FALSE, message=FALSE}
+```
+]
+
+.panel[.panel-name[Code v2]
+```{r across-example-v2, include = FALSE, message=FALSE}
+penguins %>% 
+  group_by(species) %>% 
+  summarize(across(where(is.numeric), list(mean = mean), na.rm = TRUE))
+```
+
+```{r echo=FALSE, message=FALSE}
+decorate_chunk("across-example-v2", eval = FALSE) %>% 
+  flair("where(is.numeric)", color = "cornflowerblue") %>% 
+  flair("list(mean = mean)") %>% 
+  flair("list(mean = mean)", color = "red") %>% 
+  flair("na.rm = TRUE", color = "orange")
+```
+
+***
+
+**Note:**
+
+If you specify <span style="color: red"> `.funs` </span> as a named list, e.g. `list(mean = mean)`, then `across()` will automatically append the name of the applied function(s) to the names of the output columns, and you don't have to manually specify a <span style="color: darkorchid"> `.names()` </span> argument at all! 
 ]
 
 
-
-
-.panel[.panel-name[Output]
-```{r ref.label="across-example", echo=FALSE, message=FALSE}
+.panel[.panel-name[Output v2]
+```{r ref.label="across-example-v2", echo=FALSE, message=FALSE}
 ```
 ]
 ]

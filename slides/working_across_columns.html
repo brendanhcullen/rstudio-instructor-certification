@@ -383,12 +383,14 @@ background-size: 10%
 &lt;br&gt;
 --
 
-&lt;span style="color: orange"&gt; `...` &lt;/span&gt; = additional arguments for the function(s) specified in `.fns`
+&lt;span style="color: orange"&gt; `...` &lt;/span&gt; = additional arguments for the function(s) specified in `.fns` (e.g. `na.rm = TRUE`)
 
 &lt;br&gt;
 --
 
-&lt;span style="color: darkorchid"&gt; `.names` &lt;/span&gt; = a `glue` specification that describes how you want to name the output columns of your transformation
+&lt;span style="color: darkorchid"&gt; `.names` &lt;/span&gt; = a `glue` specification that describes how you want to name the output columns, in which `{col}` stands for the selected column name.
+
+e.g. When calculating the mean of `body_mass_g`, `.names = {col}_mean` would result in the output column named `"body_mass_g_mean"`
 
 &lt;br&gt;
 ---
@@ -410,25 +412,49 @@ Use `across()` to calculate the mean of all numeric columns for each species in 
 **Remember:** `across()` goes *inside* of the `dplyr` function that you want to apply to multiple columns
 ]
 
-.panel[.panel-name[Code]
+.panel[.panel-name[Code v1]
 
 
 
-&lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(&lt;span style='background-color:#ffff7f'&gt;across&lt;/span&gt;(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;span style='color:red'&gt;mean&lt;/span&gt;, &lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;, &lt;span style='color:darkorchid'&gt;.names = '{col}_mean'&lt;/span&gt;))&lt;/code&gt;
+&lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(across(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;span style='color:red'&gt;mean&lt;/span&gt;, &lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;, &lt;span style='color:darkorchid'&gt;.names = '{col}_mean'&lt;/span&gt;))&lt;/code&gt;
 
 ***
 
-**Note:** &lt;span style="color: cornflowerblue"&gt; `where()` &lt;/span&gt; is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as &lt;span style="color: cornflowerblue"&gt; `is.numeric()` &lt;/span&gt;, returns `TRUE`. 
+**Note:** 
 
-You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here](https://dplyr.tidyverse.org/reference/select.html). 
+&lt;span style="color: cornflowerblue"&gt; `where()` &lt;/span&gt; is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as &lt;span style="color: cornflowerblue"&gt; `is.numeric()` &lt;/span&gt;, returns `TRUE`. 
 
-Also see [here](https://tladeras.shinyapps.io/learning_tidyselect/) for a great interactive tutorial on `tidyselect` by [Ted Laderas](https://laderast.github.io/). 
+You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here](https://dplyr.tidyverse.org/reference/select.html). Also see [here](https://tladeras.shinyapps.io/learning_tidyselect/) for a great interactive tutorial on `tidyselect` by [Ted Laderas](https://laderast.github.io/). 
+]
+
+.panel[.panel-name[Output v1]
+
+```
+## # A tibble: 3 x 6
+##   species bill_length_mm_… bill_depth_mm_m… flipper_length_… body_mass_g_mean
+##   &lt;fct&gt;              &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 Adelie              38.8             18.3             190.            3701.
+## 2 Chinst…             48.8             18.4             196.            3733.
+## 3 Gentoo              47.5             15.0             217.            5076.
+## # … with 1 more variable: year_mean &lt;dbl&gt;
+```
+]
+
+.panel[.panel-name[Code v2]
+
+
+
+&lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(across(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;span style='background-color:#ffff7f'&gt;&lt;span style='color:red'&gt;list(mean = mean)&lt;/span&gt;&lt;/span&gt;, &lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;))&lt;/code&gt;
+
+***
+
+**Note:**
+
+If you specify &lt;span style="color: red"&gt; `.funs` &lt;/span&gt; as a named list, e.g. `list(mean = mean)`, then `across()` will automatically append the name of the applied function(s) to the names of the output columns, and you don't have to manually specify a &lt;span style="color: darkorchid"&gt; `.names()` &lt;/span&gt; argument at all! 
 ]
 
 
-
-
-.panel[.panel-name[Output]
+.panel[.panel-name[Output v2]
 
 ```
 ## # A tibble: 3 x 6
