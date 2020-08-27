@@ -108,20 +108,24 @@ class: inverse
 
 --
 
-- **Understand** how to apply `dplyr` functions, e.g. `mutate()`, `summarize()`, to single columns
+- **Review** how to apply `dplyr` functions, e.g. `mutate()`, `summarize()`, to single columns
 
+<br>
 --
 
-- **Understand** how to apply `dplyr` functions to multiple columns using scoped verbs, e.g. `summarize_if()`, `summarize_at()`
+- **Learn** how to apply `dplyr` functions to multiple columns using scoped verbs, e.g. `summarize_if()`, `summarize_at()`
 
+<br>
 --
 
 - **Learn** how to perform column-wise operations using the new `across()` function from `dplyr` 1.0.0 
 
+<br>
 --
 
 - **Apply** `across()` along with `summarize()` to summarize multiple columns
 
+<br>
 ---
 background-image: url(../img/dplyr_hex_old.png)
 background-position: 90% 5%
@@ -189,10 +193,7 @@ penguins %>%
 
 .panel[.panel-name[Output]
 
-```{r echo=FALSE, message=FALSE}
-penguins %>% 
-  group_by(species) %>% 
-  summarize(bill_length_mm_m = mean(bill_length_mm, na.rm = TRUE))
+```{r ref.label="summarize-one-col", echo=FALSE, message=FALSE}
 ```
 
 ]
@@ -220,7 +221,7 @@ e.g. Calculate the mean value of **all bill dimensions** (i.e. `bill_length`, `b
 ]
 
 .panel[.panel-name[Code]
-```{r eval=FALSE}
+```{r summarize-mult-1, eval=FALSE}
 penguins %>% 
   group_by(species) %>% 
   summarize_at(vars(c(bill_length_mm, bill_depth_mm)), mean, na.rm = TRUE)
@@ -231,10 +232,7 @@ penguins %>%
 
 
 .panel[.panel-name[Output]
-```{r echo=FALSE, message=FALSE}
-penguins %>% 
-  group_by(species) %>% 
-  summarize_at(vars(c(bill_length_mm, bill_depth_mm)), mean, na.rm = TRUE)
+```{r ref.label = "summarize-mult-1", echo=FALSE, message=FALSE}
 ```
 ]
 ]
@@ -249,7 +247,7 @@ e.g. Calculate the mean value of **all numeric** variables for each species.
 ]
 
 .panel[.panel-name[Code]
-```{r eval=FALSE}
+```{r summarize-mult-2, eval=FALSE}
 penguins %>% 
   group_by(species) %>% 
   summarize_if(is.numeric, mean, na.rm = TRUE)
@@ -260,10 +258,7 @@ penguins %>%
 ]
 
 .panel[.panel-name[Output]
-```{r echo=FALSE, message=FALSE}
-penguins %>% 
-  group_by(species) %>% 
-  summarize_if(is.numeric, mean, na.rm = TRUE)
+```{r ref.label="summarize-mult-2", echo=FALSE, message=FALSE}
 ```
 ]
 ]
@@ -332,7 +327,7 @@ background-size: 10%
 
 # `dplyr::across()`
 
-```{r across_spec, echo = FALSE}
+```{r across-spec-color-coded, echo = FALSE}
 decorate('across(.cols = everything(), .fns = NULL, ..., .names = NULL)', error = TRUE, eval=FALSE) %>% 
   flair(".cols = everything()", color = "cornflowerblue") %>% 
   flair(".fns = NULL", color = "red") %>% 
@@ -344,18 +339,22 @@ decorate('across(.cols = everything(), .fns = NULL, ..., .names = NULL)', error 
 
 <span style="color: cornflowerblue"> `.cols` </span> = the columns you want to transform (all columns will be selected by default)
 
+<br>
 --
 
 <span style="color: red">`.fns` </span> = the function(s) you want to apply to each of the selected columns
 
+<br>
 --
 
 <span style="color: orange"> `...` </span> = additional arguments for the function(s) specified in `.fns`
 
+<br>
 --
 
 <span style="color: darkorchid"> `.names` </span> = a `glue` specification that describes how you want to name the output columns of your transformation
 
+<br>
 ---
 background-image: url(../img/dplyr_hex_new.png)
 background-position: 90% 5%
@@ -363,12 +362,7 @@ background-size: 10%
 
 # `dplyr::across()`
 
-```{r echo = FALSE}
-decorate('across(.cols = everything(), .fns = NULL, ..., .names = NULL)', error = TRUE, eval=FALSE) %>% 
-  flair(".cols = everything()", color = "cornflowerblue") %>% 
-  flair(".fns = NULL", color = "red") %>% 
-  flair("...", color = "orange") %>% 
-  flair(".names = NULL", color = "darkorchid")
+```{r ref.label="across-spec-color-coded", echo = FALSE}
 ```
 
 .panelset[
@@ -376,7 +370,6 @@ decorate('across(.cols = everything(), .fns = NULL, ..., .names = NULL)', error 
 .panel[.panel-name[Example]
 Use `across()` to calculate the mean of all numeric columns for each species in `penguins`
 
-***
 
 **Remember:** `across()` goes *inside* of the `dplyr` function that you want to apply to multiple columns
 ]
@@ -390,6 +383,7 @@ penguins %>%
 
 ```{r echo=FALSE, message=FALSE}
 decorate_chunk("across-example", eval = FALSE) %>% 
+  flair("across") %>% 
   flair("where(is.numeric)", color = "cornflowerblue") %>% 
   flair("mean", color = "red") %>% 
   flair("na.rm = TRUE", color = "orange") %>% 
@@ -398,7 +392,7 @@ decorate_chunk("across-example", eval = FALSE) %>%
 
 ***
 
-**Note:** `where()` is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as `is.numeric()`, returns `TRUE`. 
+**Note:** <span style="color: cornflowerblue"> `where()` </span> is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as <span style="color: cornflowerblue"> `is.numeric()` </span>, returns `TRUE`. 
 
 You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here](https://dplyr.tidyverse.org/reference/select.html). 
 
@@ -406,15 +400,13 @@ Also see [here](https://tladeras.shinyapps.io/learning_tidyselect/) for a great 
 ]
 
 .panel[.panel-name[Output]
-```{r echo=FALSE, message=FALSE}
-penguins %>% 
-  group_by(species) %>% 
-  summarize(across(where(is.numeric), mean, na.rm = TRUE, .names = '{col}_m'))
+```{r ref.label="across-example", echo=FALSE, message=FALSE}
 ```
 ]
 ]
 
 ---
+class:inverse
 
 # Your Turn
 
@@ -425,13 +417,17 @@ Link to learnR app here
 ```
 
 ---
-class: inverse
 # More resources
 
 - [Blog post](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/) by Hadley Wickham highlighting `across()` as a key component of the `dplyr` 1.0.0 update.
 
+<br>
 - [This vignette](https://dplyr.tidyverse.org/articles/colwise.html) on tidyverse.org about column-wise operations.
 
+<br>
 - Two blog posts by Rebecca Barter on [scoped verbs](http://www.rebeccabarter.com/blog/2019-01-23_scoped-verbs/) and [`across()`](http://www.rebeccabarter.com/blog/2020-07-09-across/).
 
+<br>
 - [Interactive tutorial](https://tladeras.shinyapps.io/learning_tidyselect/) by Ted Laderas on `tidyselect`.
+
+<br>

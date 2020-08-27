@@ -114,20 +114,24 @@ class: inverse
 
 --
 
-- **Understand** how to apply `dplyr` functions, e.g. `mutate()`, `summarize()`, to single columns
+- **Review** how to apply `dplyr` functions, e.g. `mutate()`, `summarize()`, to single columns
 
+&lt;br&gt;
 --
 
-- **Understand** how to apply `dplyr` functions to multiple columns using scoped verbs, e.g. `summarize_if()`, `summarize_at()`
+- **Learn** how to apply `dplyr` functions to multiple columns using scoped verbs, e.g. `summarize_if()`, `summarize_at()`
 
+&lt;br&gt;
 --
 
 - **Learn** how to perform column-wise operations using the new `across()` function from `dplyr` 1.0.0 
 
+&lt;br&gt;
 --
 
 - **Apply** `across()` along with `summarize()` to summarize multiple columns
 
+&lt;br&gt;
 ---
 background-image: url(../img/dplyr_hex_old.png)
 background-position: 90% 5%
@@ -363,18 +367,22 @@ background-size: 10%
 
 &lt;span style="color: cornflowerblue"&gt; `.cols` &lt;/span&gt; = the columns you want to transform (all columns will be selected by default)
 
+&lt;br&gt;
 --
 
 &lt;span style="color: red"&gt;`.fns` &lt;/span&gt; = the function(s) you want to apply to each of the selected columns
 
+&lt;br&gt;
 --
 
 &lt;span style="color: orange"&gt; `...` &lt;/span&gt; = additional arguments for the function(s) specified in `.fns`
 
+&lt;br&gt;
 --
 
 &lt;span style="color: darkorchid"&gt; `.names` &lt;/span&gt; = a `glue` specification that describes how you want to name the output columns of your transformation
 
+&lt;br&gt;
 ---
 background-image: url(../img/dplyr_hex_new.png)
 background-position: 90% 5%
@@ -390,7 +398,6 @@ background-size: 10%
 .panel[.panel-name[Example]
 Use `across()` to calculate the mean of all numeric columns for each species in `penguins`
 
-***
 
 **Remember:** `across()` goes *inside* of the `dplyr` function that you want to apply to multiple columns
 ]
@@ -399,11 +406,11 @@ Use `across()` to calculate the mean of all numeric columns for each species in 
 
 
 
-&lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(across(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;span style='color:red'&gt;mean&lt;/span&gt;, &lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;, &lt;span style='color:darkorchid'&gt;.names = '{col}_m'&lt;/span&gt;))&lt;/code&gt;
+&lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(&lt;span style='background-color:#ffff7f'&gt;across&lt;/span&gt;(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;span style='color:red'&gt;mean&lt;/span&gt;, &lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;, &lt;span style='color:darkorchid'&gt;.names = '{col}_m'&lt;/span&gt;))&lt;/code&gt;
 
 ***
 
-**Note:** `where()` is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as `is.numeric()`, returns `TRUE`. 
+**Note:** &lt;span style="color: cornflowerblue"&gt; `where()` &lt;/span&gt; is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as &lt;span style="color: cornflowerblue"&gt; `is.numeric()` &lt;/span&gt;, returns `TRUE`. 
 
 You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here](https://dplyr.tidyverse.org/reference/select.html). 
 
@@ -424,6 +431,7 @@ Also see [here](https://tladeras.shinyapps.io/learning_tidyselect/) for a great 
 ]
 
 ---
+class:inverse
 
 # Your Turn
 
@@ -432,16 +440,20 @@ Link to learnR app here
 
 
 ---
-class: inverse
 # More resources
 
 - [Blog post](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/) by Hadley Wickham highlighting `across()` as a key component of the `dplyr` 1.0.0 update.
 
+&lt;br&gt;
 - [This vignette](https://dplyr.tidyverse.org/articles/colwise.html) on tidyverse.org about column-wise operations.
 
+&lt;br&gt;
 - Two blog posts by Rebecca Barter on [scoped verbs](http://www.rebeccabarter.com/blog/2019-01-23_scoped-verbs/) and [`across()`](http://www.rebeccabarter.com/blog/2020-07-09-across/).
 
+&lt;br&gt;
 - [Interactive tutorial](https://tladeras.shinyapps.io/learning_tidyselect/) by Ted Laderas on `tidyselect`.
+
+&lt;br&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
