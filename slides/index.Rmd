@@ -226,7 +226,17 @@ knitr::include_graphics("img/summarize_multiple.png")
 .panelset[
 
 .panel[.panel-name[Example #1]
-e.g. Calculate the mean value of **all bill dimensions** (i.e. `bill_length`, `bill_depth`) for each species.
+Calculate the mean value of **all bill dimensions** (i.e. `bill_length`, `bill_depth`) for each species.
+
+`r emo::ji("no_entry_sign")` Avoid copying and pasting or repeating `mean()` more than once in your solution, e.g. 
+
+```{r eval = FALSE}
+# don't do this...
+penguins %>% 
+  summarize(bill_length_mm = mean(bill_length_mm, na.rm = TRUE),
+            bill_depth_mm = mean(bill_depth_mm, na.rm = TRUE))
+```
+
 ]
 
 .panel[.panel-name[Code]
@@ -260,7 +270,9 @@ template: multiple columns
 .panelset[
 
 .panel[.panel-name[Example #2]
-e.g. Calculate the mean value of **all numeric** variables for each species.
+Calculate the mean value of **all numeric** variables for each species.
+
+`r emo::ji("no_entry_sign")` Again, no copying and pasting or repeating `mean()` more than once!
 ]
 
 .panel[.panel-name[Code]
