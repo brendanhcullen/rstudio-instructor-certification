@@ -96,6 +96,25 @@ pre {
 ]
 
 ---
+# Learning objectives
+
+--
+
+- **Understand** how to apply `dplyr` functions, e.g. `mutate()`, `summarize()`, to single columns
+
+--
+
+- **Understand** how to apply `dplyr` functions to multiple columns using scoped verbs, e.g. `summarize_if()`, `summarize_at()`
+
+--
+
+- **Learn** how to perform column-wise operations using the new `across()` function from `dplyr` 1.0.0 
+
+--
+
+- **Apply** `across()` along with `summarize()` to summarize multiple columns
+
+---
 background-image: url(../img/dplyr_hex_old.png)
 background-position: 90% 5%
 background-size: 10%
