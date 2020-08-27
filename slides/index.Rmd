@@ -379,16 +379,16 @@ background-size: 10%
 # `dplyr::across()`
 
 ```{r across-spec-color-coded, echo = FALSE}
-decorate('across(.cols = everything(), .fns = NULL, ..., .names = NULL)', error = TRUE, eval=FALSE) %>% 
-  flair(".cols = everything()", color = "cornflowerblue") %>% 
-  flair(".fns = NULL", color = "red") %>% 
+decorate('across(.cols, .fns, ..., .names)', error = TRUE, eval=FALSE) %>% 
+  flair(".cols", color = "cornflowerblue") %>% 
+  flair(".fns", color = "red") %>% 
   flair("...", color = "orange") %>% 
-  flair(".names = NULL", color = "darkorchid")
+  flair(".names", color = "darkorchid")
 ```
 
 --
 
-<span style="color: cornflowerblue"> `.cols` </span> = the columns you want to transform (all columns will be selected by default)
+<span style="color: cornflowerblue"> `.cols` </span> = the columns you want to transform 
 
 <br>
 --
