@@ -137,11 +137,6 @@ class: inverse
 <br>
 
 ---
-# Concept map
-
-![](img/columnwise_concept_map.png)
-
----
 background-image: url(img/dplyr_hex_old.png)
 background-position: 90% 5%
 background-size: 10%
