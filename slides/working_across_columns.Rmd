@@ -365,6 +365,10 @@ decorate('across(.cols = everything(), .fns = NULL, ..., .names = NULL)', error 
 
 .panel[.panel-name[Example]
 Use `across()` to calculate the mean of all numeric columns for each species in `penguins`
+
+***
+
+**Remember:** `across()` goes *inside* of the `dplyr` function that you want to apply to multiple columns
 ]
 
 .panel[.panel-name[Code]
@@ -382,8 +386,9 @@ decorate_chunk("across-example", eval = FALSE) %>%
   flair(".names = '{col}_m'", color = "darkorchid")
 ```
 
+***
 
-`where()` is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as `is.numeric()`, returns `TRUE`. 
+**Note:** `where()` is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as `is.numeric()`, returns `TRUE`. 
 
 You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here](https://dplyr.tidyverse.org/reference/select.html). 
 

@@ -379,6 +379,10 @@ background-size: 10%
 
 .panel[.panel-name[Example]
 Use `across()` to calculate the mean of all numeric columns for each species in `penguins`
+
+***
+
+**Remember:** `across()` goes *inside* of the `dplyr` function that you want to apply to multiple columns
 ]
 
 .panel[.panel-name[Code]
@@ -387,8 +391,9 @@ Use `across()` to calculate the mean of all numeric columns for each species in 
 
 &lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(across(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;span style='color:red'&gt;mean&lt;/span&gt;, &lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;, &lt;span style='color:darkorchid'&gt;.names = '{col}_m'&lt;/span&gt;))&lt;/code&gt;
 
+***
 
-`where()` is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as `is.numeric()`, returns `TRUE`. 
+**Note:** `where()` is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as `is.numeric()`, returns `TRUE`. 
 
 You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here](https://dplyr.tidyverse.org/reference/select.html). 
 
