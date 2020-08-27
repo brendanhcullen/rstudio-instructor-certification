@@ -238,6 +238,7 @@ knitr::include_graphics("img/culmen_depth.png")
 ```
 ]
 
+.pull-right[Artwork by @allison_horst]
 
 ]
 
