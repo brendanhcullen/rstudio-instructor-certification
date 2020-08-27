@@ -53,7 +53,7 @@ Fill in the code blanks below to find the maximum value of all body dimensions (
 
 ```{r faded-example-1, exercise = TRUE, exercise.lines = 7}
 penguins %>% 
-  group_by(___, ___) %>% 
+  group_by(species, island) %>% 
   summarize(___(c(where(___), -year), 
                    ___, na.rm = TRUE, 
                    .names = "___"))
@@ -75,7 +75,7 @@ Now perform the same calculation again, but this time specify the `.fns` argumen
 ```{r faded-example-2, exercise=TRUE, exercise.lines = 6}
 
 penguins %>% 
-  group_by(___, ___) %>% 
+  group_by(species, island) %>% 
   summarize(___(c(where(___), -year), 
                    ___(___ = ___), na.rm = TRUE))
 
