@@ -252,6 +252,7 @@ Calculate the mean value of **all bill dimensions** (i.e. `bill_length`, `bill_d
 ```r
 # don't do this...
 penguins %&gt;% 
+  group_by(species) %&gt;% 
   summarize(bill_length_mm = mean(bill_length_mm, na.rm = TRUE),
             bill_depth_mm = mean(bill_depth_mm, na.rm = TRUE))
 ```
