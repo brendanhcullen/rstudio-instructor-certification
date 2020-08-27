@@ -188,7 +188,7 @@ knitr::include_graphics("img/summarize_single.png")
 .panelset[
 
 .panel[.panel-name[Example]
-Use `summarize()` to calculate the mean `bill length` for each `species` in the `penguins` dataset
+`r emo::ji("thinking")` Use `summarize()` to calculate the mean `bill length` for each `species` in the `penguins` dataset
 ]
 
 .panel[.panel-name[Code]
@@ -226,17 +226,18 @@ knitr::include_graphics("img/summarize_multiple.png")
 .panelset[
 
 .panel[.panel-name[Example #1]
-Calculate the mean value of **all bill dimensions** (i.e. `bill_length`, `bill_depth`) for each species.
+.pull-left[
+`r emo::ji("thinking")` Calculate the mean value of **all bill dimensions** (i.e. `bill_length`, `bill_depth`) for each species
 
-`r emo::ji("no_entry_sign")` Avoid copying and pasting or repeating `mean()` more than once in your solution, e.g. 
+`r emo::ji("no_entry_sign")` Avoid copying and pasting or repeating `mean()` more than once in your solution
+]
 
-```{r eval = FALSE}
-# don't do this...
-penguins %>% 
-  group_by(species) %>% 
-  summarize(bill_length_mm = mean(bill_length_mm, na.rm = TRUE),
-            bill_depth_mm = mean(bill_depth_mm, na.rm = TRUE))
+.pull-right[
+```{r echo = FALSE, out.width = "100%"}
+knitr::include_graphics("img/culmen_depth.png")
 ```
+]
+
 
 ]
 
@@ -271,7 +272,7 @@ template: multiple columns
 .panelset[
 
 .panel[.panel-name[Example #2]
-Calculate the mean value of **all numeric** variables for each species.
+`r emo::ji("thinking")` Calculate the mean value of **all numeric** variables for each species.
 
 `r emo::ji("no_entry_sign")` Again, no copying and pasting or repeating `mean()` more than once!
 ]
@@ -389,6 +390,8 @@ decorate('across(.cols = everything(), .fns = NULL, ..., .names = NULL)', error 
 
 <span style="color: darkorchid"> `.names` </span> = a `glue` specification that describes how you want to name the output columns, in which `{col}` stands for the selected column name.
 
+--
+
 e.g. When calculating the mean of `body_mass_g`, `.names = {col}_mean` would result in the output column named `"body_mass_g_mean"`
 
 <br>
@@ -405,7 +408,7 @@ background-size: 10%
 .panelset[
 
 .panel[.panel-name[Example]
-Use `across()` to calculate the mean of all numeric columns for each species in `penguins`
+`r emo::ji("thinking")` Use `across()` to calculate the mean of all numeric columns for each species in `penguins`
 
 
 `r emo::ji("megaphone")` Remember, `across()` goes *inside* of the `dplyr` function that you want to apply to multiple columns.
