@@ -11,6 +11,11 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
+<center>
+```{r penguins, echo = FALSE, out.width = "30%"}
+knitr::include_graphics("images/penguins.png")
+```
+</center>
 
 ## Your Turn #1
 
@@ -18,34 +23,39 @@ Take a look at the following code chunk:
 
 ```{r question-1-code, eval=FALSE, echo=TRUE}
 penguins %>% 
-  summarize(bill_length_mm = mean(bill_length_mm, na.rm = TRUE),
-            bill_depth_mm = mean(bill_depth_mm, na.rm = TRUE))
+  group_by(year) %>% 
+  summarize(bill_length_mm = sd(bill_length_mm, na.rm = TRUE),
+            bill_depth_mm = sd(bill_depth_mm, na.rm = TRUE))
 ```
 
 
 ```{r question-1}
-question("Which of the following is equivalent to the code chunk shown above?",
+question("Without running any code, which of the following is equivalent to the code chunk shown above?",
   # wrong
   answer("`penguins %>% 
-  summarize_if(vars(c(bill_length_mm, bill_depth_mm)), mean, na.rm = TRUE)`", 
+  group_by(year) %>% 
+  summarize_if(vars(c(bill_length_mm, bill_depth_mm)), sd, na.rm = TRUE)`", 
   message = "Try again! The scoped verb you're looking for is `summarize_at()`"),
   # wrong
   answer("`penguins %>% 
-  summarize_at(vars(c(bill_length_mm, bill_depth_mm)), mean)`",
-  message = "Not quite. Don't forget about additional arguments to `mean()` that must be passed through with `...`"),
+  group_by(year) %>% 
+  summarize_at(vars(c(bill_length_mm, bill_depth_mm)), sd)`",
+  message = "Not quite. Don't forget about additional arguments to `sd()` that must be passed through with `...`"),
   # correct
   answer("`penguins %>% 
-  summarize_at(vars(c(starts_with('bill'))), mean, na.rm = TRUE)`", correct = TRUE,
+  group_by(year) %>% 
+  summarize_at(vars(c(starts_with('bill'))), sd, na.rm = TRUE)`", correct = TRUE,
   message = "Nice work! You can use select helpers like `starts_with()` or `contains()` when selecting columns"),
   # wrong
   answer("`penguins %>% 
-  summarize_at(c(bill_length_mm, bill_depth_mm), mean, na.rm = TRUE)`",
+  group_by(year) %>% 
+  summarize_at(c(bill_length_mm, bill_depth_mm), sd, na.rm = TRUE)`",
   message = "Not quite. Remember that the columns selected in `summarize_at()` must be wrapped inside `vars()`"),
    allow_retry = TRUE
 )
 ```
 
-## Your Turn # 2
+## Your Turn #2
 
 ### Faded example #1
 
@@ -88,3 +98,5 @@ penguins %>%
   summarize(across(c(where(is.numeric), -year), 
                    list(max = max), na.rm = TRUE))
 ```
+
+Artwork by @allison_horst
