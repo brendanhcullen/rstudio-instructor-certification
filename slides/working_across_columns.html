@@ -414,7 +414,7 @@ Use `across()` to calculate the mean of all numeric columns for each species in 
 
 
 
-&lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(&lt;span style='background-color:#ffff7f'&gt;across&lt;/span&gt;(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;span style='color:red'&gt;mean&lt;/span&gt;, &lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;, &lt;span style='color:darkorchid'&gt;.names = '{col}_m'&lt;/span&gt;))&lt;/code&gt;
+&lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(&lt;span style='background-color:#ffff7f'&gt;across&lt;/span&gt;(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;span style='color:red'&gt;mean&lt;/span&gt;, &lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;, &lt;span style='color:darkorchid'&gt;.names = '{col}_mean'&lt;/span&gt;))&lt;/code&gt;
 
 ***
 
@@ -425,15 +425,19 @@ You can use any kind of `tidyselect` helper within `across`. For a full list of 
 Also see [here](https://tladeras.shinyapps.io/learning_tidyselect/) for a great interactive tutorial on `tidyselect` by [Ted Laderas](https://laderast.github.io/). 
 ]
 
+
+
+
 .panel[.panel-name[Output]
 
 ```
 ## # A tibble: 3 x 6
-##   species bill_length_mm_m bill_depth_mm_m flipper_length_… body_mass_g_m year_m
-##   &lt;fct&gt;              &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;
-## 1 Adelie              38.8            18.3             190.         3701.  2008.
-## 2 Chinst…             48.8            18.4             196.         3733.  2008.
-## 3 Gentoo              47.5            15.0             217.         5076.  2008.
+##   species bill_length_mm_… bill_depth_mm_m… flipper_length_… body_mass_g_mean
+##   &lt;fct&gt;              &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 Adelie              38.8             18.3             190.            3701.
+## 2 Chinst…             48.8             18.4             196.            3733.
+## 3 Gentoo              47.5             15.0             217.            5076.
+## # … with 1 more variable: year_mean &lt;dbl&gt;
 ```
 ]
 ]

@@ -388,16 +388,16 @@ Use `across()` to calculate the mean of all numeric columns for each species in 
 ```{r across-example, include = FALSE, message=FALSE}
 penguins %>% 
   group_by(species) %>% 
-  summarize(across(where(is.numeric), mean, na.rm = TRUE, .names = '{col}_m'))
+  summarize(across(where(is.numeric), mean, na.rm = TRUE, .names = '{col}_mean'))
 ```
 
 ```{r echo=FALSE, message=FALSE}
 decorate_chunk("across-example", eval = FALSE) %>% 
   flair("across") %>% 
   flair("where(is.numeric)", color = "cornflowerblue") %>% 
-  flair("mean", color = "red") %>% 
+  flair_rx(pattern = "mean(?=,)", color = "red") %>% 
   flair("na.rm = TRUE", color = "orange") %>% 
-  flair(".names = '{col}_m'", color = "darkorchid")
+  flair(".names = '{col}_mean'", color = "darkorchid")
 ```
 
 ***
@@ -408,6 +408,9 @@ You can use any kind of `tidyselect` helper within `across`. For a full list of 
 
 Also see [here](https://tladeras.shinyapps.io/learning_tidyselect/) for a great interactive tutorial on `tidyselect` by [Ted Laderas](https://laderast.github.io/). 
 ]
+
+
+
 
 .panel[.panel-name[Output]
 ```{r ref.label="across-example", echo=FALSE, message=FALSE}
