@@ -38,7 +38,7 @@ pre {
 
 <center>
 ```{r echo = FALSE, out.width = "60%"}
-knitr::include_graphics("../img/christina_colwise.png")
+knitr::include_graphics("img/christina_colwise.png")
 ```
 </center>
 
@@ -46,7 +46,7 @@ knitr::include_graphics("../img/christina_colwise.png")
 # Christina Colwise
 
 .pull-left[
-![](../img/christina_colwise.png)
+![](img/christina_colwise.png)
 
 ]
 
@@ -62,7 +62,7 @@ knitr::include_graphics("../img/christina_colwise.png")
 # Christina Colwise
 
 .pull-left[
-![](../img/christina_colwise.png)
+![](img/christina_colwise.png)
 
 ]
 
@@ -80,7 +80,7 @@ knitr::include_graphics("../img/christina_colwise.png")
 # Christina Colwise
 
 .pull-left[
-![](../img/christina_colwise.png)
+![](img/christina_colwise.png)
 
 ]
 
@@ -96,7 +96,7 @@ knitr::include_graphics("../img/christina_colwise.png")
 # Christina Colwise
 
 .pull-left[
-![](../img/christina_colwise.png)
+![](img/christina_colwise.png)
 
 ]
 
@@ -137,7 +137,7 @@ class: inverse
 
 <br>
 ---
-background-image: url(../img/dplyr_hex_old.png)
+background-image: url(img/dplyr_hex_old.png)
 background-position: 90% 5%
 background-size: 10%
 
@@ -146,17 +146,17 @@ background-size: 10%
 e.g. Create a new column with `mutate()`
 
 ```{r echo = FALSE, out.width = "40%"}
-knitr::include_graphics("../img/mutate.png")
+knitr::include_graphics("img/mutate.png")
 ```
 
 e.g. Summarize data with `summarize()`
 
 ```{r echo = FALSE, out.width = "40%"}
-knitr::include_graphics("../img/summarize_multiple.png")
+knitr::include_graphics("img/summarize_multiple.png")
 ```
 
 ---
-background-image: url(../img/penguins_hex.png)
+background-image: url(img/penguins_hex.png)
 background-position: 90% 5%
 background-size: 10%
 
@@ -172,7 +172,7 @@ glimpse(penguins)
 ```
 
 ---
-background-image: url(../img/dplyr_hex_old.png)
+background-image: url(img/dplyr_hex_old.png)
 background-position: 90% 5%
 background-size: 10%
 
@@ -181,7 +181,7 @@ background-size: 10%
 Apply `summarize()` to a **single** column.
 
 ```{r echo = FALSE, out.width = "20%"}
-knitr::include_graphics("../img/summarize_single.png")
+knitr::include_graphics("img/summarize_single.png")
 ```
 
 --
@@ -210,7 +210,7 @@ penguins %>%
 ]
 ---
 name: multiple columns
-background-image: url(../img/dplyr_hex_old.png)
+background-image: url(img/dplyr_hex_old.png)
 background-position: 90% 5%
 background-size: 10%
 
@@ -219,7 +219,7 @@ background-size: 10%
 Apply `summarize()` to **multiple columns** at once
 
 ```{r echo = FALSE, out.width = "20%"}
-knitr::include_graphics("../img/summarize_multiple.png")
+knitr::include_graphics("img/summarize_multiple.png")
 ```
 
 --
@@ -301,7 +301,7 @@ name: better way
 .center[
 ## `dplyr` < 1.0.0
 ```{r echo = FALSE, out.width = "50%"}
-knitr::include_graphics("../img/dplyr_hex_old.png")
+knitr::include_graphics("img/dplyr_hex_old.png")
 ```
 
 `summarize_at()`, `summarize_if()`, `summarize_all()`, `mutate_if()`, `mutate_at()`, `mutate_all()`, ...
@@ -315,7 +315,7 @@ knitr::include_graphics("../img/dplyr_hex_old.png")
 .center[
 ## `dplyr` >= 1.0.0
 ```{r echo = FALSE, out.width = "50%"}
-knitr::include_graphics("../img/dplyr_hex_new.png")
+knitr::include_graphics("img/dplyr_hex_new.png")
 ```
 
 `across()`
@@ -325,26 +325,26 @@ knitr::include_graphics("../img/dplyr_hex_new.png")
 ]
 
 ---
-background-image: url(../img/dplyr_hex_new.png)
+background-image: url(img/dplyr_hex_new.png)
 background-position: 90% 5%
 background-size: 10%
 
 # `dplyr::across()`
 
-![](../img/dplyr_across_blank.png)
+![](img/dplyr_across_blank.png)
 .pull-right[Artwork by @allison_horst]
 
 ---
-background-image: url(../img/dplyr_hex_new.png)
+background-image: url(img/dplyr_hex_new.png)
 background-position: 90% 5%
 background-size: 10%
 
 # `dplyr::across()`
 
-![](../img/dplyr_across.png)
+![](img/dplyr_across.png)
 .pull-right[Artwork by @allison_horst]
 ---
-background-image: url(../img/dplyr_hex_new.png)
+background-image: url(img/dplyr_hex_new.png)
 background-position: 90% 5%
 background-size: 10%
 
@@ -381,7 +381,7 @@ e.g. When calculating the mean of `body_mass_g`, `.names = {col}_mean` would res
 
 <br>
 ---
-background-image: url(../img/dplyr_hex_new.png)
+background-image: url(img/dplyr_hex_new.png)
 background-position: 90% 5%
 background-size: 10%
 
@@ -469,7 +469,7 @@ class:inverse, center, middle
 ---
 # Concept map
 
-![](../img/columnwise_concept_map.png)
+![](img/columnwise_concept_map.png)
 
 ---
 class:inverse
