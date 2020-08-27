@@ -163,7 +163,7 @@ Use `summarize()` to calculate the mean `bill length` for each `species` in the 
 ```r
 penguins %&gt;% 
   group_by(species) %&gt;% 
-* summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE))
+  summarize(bill_length_mm_m = mean(bill_length_mm, na.rm = TRUE))
 ```
 ]
 
@@ -172,7 +172,7 @@ penguins %&gt;%
 
 ```
 ## # A tibble: 3 x 2
-##   species   mean_bill_length
+##   species   bill_length_mm_m
 ##   &lt;fct&gt;                &lt;dbl&gt;
 ## 1 Adelie                38.8
 ## 2 Chinstrap             48.8
@@ -240,7 +240,7 @@ penguins %&gt;%
   summarize_if(is.numeric, mean, na.rm = TRUE)
 ```
 
-`summarize_if()` is another example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a set of columns that all satisfy some logical criteria. That logical criteria is specified by a **predicate function**, e.g. `is.numeric()`. 
+`summarize_if()` is another example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a set of columns that all satisfy some logical criteria. That logical criteria is specified using a **predicate function**, e.g. `is.numeric()`. 
 
 ]
 
@@ -304,28 +304,32 @@ name: better way
 .pull-right[Artwork by @allison_horst]
 ---
 
-# dplyr::across()
+# `dplyr::across()`
 
 
-```r
-across(.cols = everything(), .fns = NULL, ..., .names = NULL)
-```
+&lt;code class ='r hljs remark-code'&gt;across(&lt;span style='color:cornflowerblue'&gt;.cols = everything()&lt;/span&gt;, &lt;span style='color:red'&gt;.fns = NULL&lt;/span&gt;, &lt;span style='color:orange'&gt;...&lt;/span&gt;, &lt;span style='color:darkorchid'&gt;.names = NULL&lt;/span&gt;)&lt;/code&gt;
 
-`.cols` = the columns you want to transform
+--
 
-`.fns` = the function(s) you want to apply to each of the selected columns
+&lt;span style="color: cornflowerblue"&gt; `.cols` &lt;/span&gt; = the columns you want to transform (all columns will be selected by default)
 
-`...` = additional arguments for the function(s) specified in `.fns`
+--
 
-`.names` = a `glue` specification that describes how you want to name the output columns of your transformation
+&lt;span style="color: red"&gt;`.fns` &lt;/span&gt; = the function(s) you want to apply to each of the selected columns
+
+--
+
+&lt;span style="color: orange"&gt; `...` &lt;/span&gt; = additional arguments for the function(s) specified in `.fns`
+
+--
+
+&lt;span style="color: darkorchid"&gt; `.names` &lt;/span&gt; = a `glue` specification that describes how you want to name the output columns of your transformation
+
 ---
 # `dplyr::across()`
 
 
-```r
-across(.cols = everything(), .fns = NULL, ..., .names = NULL)
-```
-
+&lt;code class ='r hljs remark-code'&gt;across(&lt;span style='color:cornflowerblue'&gt;.cols = everything()&lt;/span&gt;, &lt;span style='color:red'&gt;.fns = NULL&lt;/span&gt;, &lt;span style='color:orange'&gt;...&lt;/span&gt;, &lt;span style='color:darkorchid'&gt;.names = NULL&lt;/span&gt;)&lt;/code&gt;
 
 .panelset[
 
@@ -335,28 +339,27 @@ Use `across()` to calculate the mean of all numeric columns for each species in 
 
 .panel[.panel-name[Code]
 
-```r
-penguins %&gt;% 
-  group_by(species) %&gt;% 
-  summarize(across(where(is.numeric), mean, na.rm = TRUE, .names = "{col}_mean"))
-```
+
+
+&lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(across(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;span style='color:red'&gt;mean&lt;/span&gt;, &lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;, &lt;span style='color:darkorchid'&gt;.names = '{col}_m'&lt;/span&gt;))&lt;/code&gt;
+
 
 `where()` is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as `is.numeric()`, returns `TRUE`. 
 
-You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here.](https://dplyr.tidyverse.org/reference/select.html)
+You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here](https://dplyr.tidyverse.org/reference/select.html). 
 
+Also see [here](https://tladeras.shinyapps.io/learning_tidyselect/) for a great interactive tutorial on `tidyselect` by [Ted Laderas](https://laderast.github.io/). 
 ]
 
 .panel[.panel-name[Output]
 
 ```
 ## # A tibble: 3 x 6
-##   species bill_length_mm_… bill_depth_mm_m… flipper_length_… body_mass_g_mean
-##   &lt;fct&gt;              &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-## 1 Adelie              38.8             18.3             190.            3701.
-## 2 Chinst…             48.8             18.4             196.            3733.
-## 3 Gentoo              47.5             15.0             217.            5076.
-## # … with 1 more variable: year_mean &lt;dbl&gt;
+##   species bill_length_mm_m bill_depth_mm_m flipper_length_… body_mass_g_m year_m
+##   &lt;fct&gt;              &lt;dbl&gt;           &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;
+## 1 Adelie              38.8            18.3             190.         3701.  2008.
+## 2 Chinst…             48.8            18.4             196.         3733.  2008.
+## 3 Gentoo              47.5            15.0             217.         5076.  2008.
 ```
 ]
 ]
@@ -365,10 +368,6 @@ You can use any kind of `tidyselect` helper within `across`. For a full list of 
 # Your Turn
 
 Link to learnR app here
-
-
-
----
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

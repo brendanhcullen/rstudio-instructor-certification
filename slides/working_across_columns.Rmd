@@ -13,7 +13,7 @@ output:
 
 ```{r setup, echo=FALSE}
 library(xaringanExtra)
-
+library(flair)
 ```
 
 ```{r xaringan-panelset, echo=FALSE}
@@ -147,7 +147,7 @@ Use `summarize()` to calculate the mean `bill length` for each `species` in the 
 ```{r summarize-one-col, eval=FALSE}
 penguins %>% 
   group_by(species) %>% 
-  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE)) #<<
+  summarize(bill_length_mm_m = mean(bill_length_mm, na.rm = TRUE))
 ```
 ]
 
@@ -156,7 +156,7 @@ penguins %>%
 ```{r echo=FALSE, message=FALSE}
 penguins %>% 
   group_by(species) %>% 
-  summarize(mean_bill_length = mean(bill_length_mm, na.rm = TRUE))
+  summarize(bill_length_mm_m = mean(bill_length_mm, na.rm = TRUE))
 ```
 
 ]
@@ -216,7 +216,7 @@ penguins %>%
   summarize_if(is.numeric, mean, na.rm = TRUE)
 ```
 
-`summarize_if()` is another example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a set of columns that all satisfy some logical criteria. That logical criteria is specified by a **predicate function**, e.g. `is.numeric()`. 
+`summarize_if()` is another example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a set of columns that all satisfy some logical criteria. That logical criteria is specified using a **predicate function**, e.g. `is.numeric()`. 
 
 ]
 
@@ -280,26 +280,42 @@ knitr::include_graphics("../img/dplyr_hex_new.png")
 .pull-right[Artwork by @allison_horst]
 ---
 
-# dplyr::across()
+# `dplyr::across()`
 
-```{r eval = FALSE}
-across(.cols = everything(), .fns = NULL, ..., .names = NULL)
+```{r across_spec, echo = FALSE}
+decorate('across(.cols = everything(), .fns = NULL, ..., .names = NULL)', error = TRUE, eval=FALSE) %>% 
+  flair(".cols = everything()", color = "cornflowerblue") %>% 
+  flair(".fns = NULL", color = "red") %>% 
+  flair("...", color = "orange") %>% 
+  flair(".names = NULL", color = "darkorchid")
 ```
 
-`.cols` = the columns you want to transform
+--
 
-`.fns` = the function(s) you want to apply to each of the selected columns
+<span style="color: cornflowerblue"> `.cols` </span> = the columns you want to transform (all columns will be selected by default)
 
-`...` = additional arguments for the function(s) specified in `.fns`
+--
 
-`.names` = a `glue` specification that describes how you want to name the output columns of your transformation
+<span style="color: red">`.fns` </span> = the function(s) you want to apply to each of the selected columns
+
+--
+
+<span style="color: orange"> `...` </span> = additional arguments for the function(s) specified in `.fns`
+
+--
+
+<span style="color: darkorchid"> `.names` </span> = a `glue` specification that describes how you want to name the output columns of your transformation
+
 ---
 # `dplyr::across()`
 
-```{r eval = FALSE}
-across(.cols = everything(), .fns = NULL, ..., .names = NULL)
+```{r echo = FALSE}
+decorate('across(.cols = everything(), .fns = NULL, ..., .names = NULL)', error = TRUE, eval=FALSE) %>% 
+  flair(".cols = everything()", color = "cornflowerblue") %>% 
+  flair(".fns = NULL", color = "red") %>% 
+  flair("...", color = "orange") %>% 
+  flair(".names = NULL", color = "darkorchid")
 ```
-
 
 .panelset[
 
@@ -308,23 +324,33 @@ Use `across()` to calculate the mean of all numeric columns for each species in 
 ]
 
 .panel[.panel-name[Code]
-```{r eval=FALSE}
+```{r across-example, include = FALSE, message=FALSE}
 penguins %>% 
   group_by(species) %>% 
-  summarize(across(where(is.numeric), mean, na.rm = TRUE, .names = "{col}_mean"))
+  summarize(across(where(is.numeric), mean, na.rm = TRUE, .names = '{col}_m'))
 ```
+
+```{r echo=FALSE, message=FALSE}
+decorate_chunk("across-example", eval = FALSE) %>% 
+  flair("where(is.numeric)", color = "cornflowerblue") %>% 
+  flair("mean", color = "red") %>% 
+  flair("na.rm = TRUE", color = "orange") %>% 
+  flair(".names = '{col}_m'", color = "darkorchid")
+```
+
 
 `where()` is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as `is.numeric()`, returns `TRUE`. 
 
-You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here.](https://dplyr.tidyverse.org/reference/select.html)
+You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here](https://dplyr.tidyverse.org/reference/select.html). 
 
+Also see [here](https://tladeras.shinyapps.io/learning_tidyselect/) for a great interactive tutorial on `tidyselect` by [Ted Laderas](https://laderast.github.io/). 
 ]
 
 .panel[.panel-name[Output]
 ```{r echo=FALSE, message=FALSE}
 penguins %>% 
   group_by(species) %>% 
-  summarize(across(where(is.numeric), mean, na.rm = TRUE, .names = "{col}_mean"))
+  summarize(across(where(is.numeric), mean, na.rm = TRUE, .names = '{col}_m'))
 ```
 ]
 ]
@@ -337,6 +363,4 @@ Link to learnR app here
 ```{r}
 
 ```
-
----
 
