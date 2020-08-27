@@ -146,7 +146,7 @@ background-size: 10%
 e.g. Create a new column with `mutate()`
 
 ```{r echo = FALSE, out.width = "40%"}
-knitr::include_graphics("../img/mutate1.png")
+knitr::include_graphics("../img/mutate.png")
 ```
 
 e.g. Summarize data with `summarize()`
@@ -456,6 +456,12 @@ Link to learnR app here
 ```
 
 ---
+# Concept map
+
+![](../img/columnwise_concept_map.png)
+
+---
+class:inverse
 # More resources
 
 - [Blog post](https://www.tidyverse.org/blog/2020/04/dplyr-1-0-0-colwise/) by Hadley Wickham highlighting `across()` as a key component of the `dplyr` 1.0.0 update.

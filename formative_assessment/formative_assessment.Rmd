@@ -46,5 +46,12 @@ question("Which of the following is equivalent to the code chunk shown above?",
 
 ## Your Turn # 2
 
+For each island, find the maximum value of all body dimensions (including body mass).  
+
+```{r}
+penguins %>% 
+  group_by(island) %>% 
+  summarize(across(c(where(is.numeric), -year), max, na.rm = TRUE, .names = "{col}_max"))
+```
 
 
