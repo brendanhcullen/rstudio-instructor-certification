@@ -434,7 +434,7 @@ decorate_chunk("across-example-v2", eval = FALSE) %>%
 
 **Note:**
 
-If you specify <span style="color: red"> `.funs` </span> as a named list, e.g. `list(mean = mean)`, then `across()` will automatically append the name of the applied function(s) to the names of the output columns, and you don't have to manually specify a <span style="color: darkorchid"> `.names()` </span> argument at all! 
+If you specify <span style="color: red"> `.funs` </span> as a named list, e.g. `list(mean = mean)`, then `across()` will automatically append the name of the applied function(s) to the names of the output columns, and you don't have to manually specify a <span style="color: darkorchid"> `.names` </span> argument at all! 
 ]
 
 
