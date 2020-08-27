@@ -54,7 +54,7 @@ knitr::include_graphics("../img/christina_colwise.png")
 .pull-right[
 ## General Background
 
-- First-generation student part-way through her first year of a Psychology PhD program
+- First-generation student part-way through her first year of a PhD program in Quantitative Psychology. 
 ]
 
 ---
@@ -72,7 +72,7 @@ knitr::include_graphics("../img/christina_colwise.png")
 
 - Has introductory working knowledge of the tidyverse
 
-- Frequently uses common `dplyr` verbs for simple data transformations, e.g. creating new variables, summarizing data
+- Frequently uses common `dplyr` verbs for simple data transformations, e.g. creating new variables, summarizing single variables
 ]
 
 ---
@@ -118,22 +118,22 @@ class: inverse
 
 --
 
-- **Review** how to apply `dplyr` functions, e.g. `mutate()`, `summarize()`, to single columns
+- ***Review*** how to apply `dplyr` functions, e.g. `mutate()`, `summarize()`, to single columns
 
 <br>
 --
 
-- **Learn** how to apply `dplyr` functions to multiple columns using scoped verbs, e.g. `summarize_if()`, `summarize_at()`
+- ***Learn*** how to apply `dplyr` functions to multiple columns using scoped verbs, e.g. `summarize_if()`, `summarize_at()`
 
 <br>
 --
 
-- **Learn** how to perform column-wise operations using the new `across()` function from `dplyr` 1.0.0 
+- ***Learn*** how to perform column-wise operations using the new `across()` function from `dplyr` 1.0.0 
 
 <br>
 --
 
-- **Apply** `across()` along with `summarize()` to summarize multiple columns
+- ***Apply*** `across()` along with `summarize()` to summarize multiple columns
 
 <br>
 ---
@@ -197,7 +197,7 @@ Use `summarize()` to calculate the mean `bill length` for each `species` in the 
 ```{r summarize-one-col, eval=FALSE}
 penguins %>% 
   group_by(species) %>% 
-  summarize(bill_length_mm_m = mean(bill_length_mm, na.rm = TRUE))
+  summarize(bill_length_mm = mean(bill_length_mm, na.rm = TRUE))
 ```
 ]
 
@@ -286,12 +286,12 @@ decorate("summarize-mult-2", eval = FALSE) %>%
 ]
 ]
 ---
-class: inverse
+class:inverse, center, middle
 
-# Your Turn
+# Your Turn #1
 
-Formative assessment #1?
-Link to learnR app here
+### Click [here](https://brendancullen.shinyapps.io/columnwise_operations_formative_assessment/#section-your-turn-1).
+
 ---
 name: better way
 
@@ -460,15 +460,11 @@ This way you don't have to manually specify a <span style="color: darkorchid"> `
 ]
 
 ---
-class:inverse
+class:inverse, center, middle
 
-# Your Turn
+# Your Turn #2
 
-Link to learnR app here
-
-```{r}
-
-```
+### Click [here](https://brendancullen.shinyapps.io/columnwise_operations_formative_assessment/#section-your-turn-2).
 
 ---
 # Concept map
