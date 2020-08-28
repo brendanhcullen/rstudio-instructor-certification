@@ -57,14 +57,14 @@ question("Without running any code, which of the following is equivalent to the 
 
 ## Your Turn #2
 
-### Faded example #1
+### Fill-in-the-blank #1
 
 Fill in the code blanks below to find the maximum value of all body dimensions (including body mass) for each combination of species and island using `dplyr::across()`. Specify a `.names` argument so that each output column name ends with the suffix `"_max"`.
 
 ```{r faded-example-1, exercise = TRUE, exercise.lines = 7}
 penguins %>% 
   group_by(species, island) %>% 
-  summarize(___(c(where(___), -year), 
+  summarize(___(c(___(is.numeric), -year), 
                    ___, na.rm = TRUE, 
                    .names = "___"))
 ```
@@ -86,15 +86,15 @@ penguins
 ```
 
 
-### Faded example #2
+### Fill-in-the-blank #2
 
 Now perform the same calculation again, but this time specify the `.fns` argument using a named list and omit the `.names` argument from `across()`. Be sure that your output columns have the same names as before (i.e. they still end with `"_max"`).
 
 ```{r faded-example-2, exercise=TRUE, exercise.lines = 6}
 penguins %>% 
   group_by(species, island) %>% 
-  summarize(___(c(where(___), -year), 
-                   ___(___ = ___), na.rm = TRUE))
+  summarize(___(c(___(is.numeric), -year), 
+                   list(___ = ___), na.rm = TRUE))
 
 ```
 
