@@ -311,7 +311,9 @@ template: multiple columns
 
 &lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;span style='background-color:#ffff7f'&gt;summarize_if&lt;/span&gt;(is.numeric, mean, na.rm = TRUE)&lt;/code&gt;
 
-🔍 `summarize_if()` is another example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a set of columns that all satisfy some logical criteria. That logical criteria is specified using a **predicate function**, e.g. `is.numeric()`, which will return `TRUE` or `FALSE`.
+🔍 `summarize_if()` is another example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a set of columns that all satisfy some logical criteria.
+
+That logical criteria is specified using a **predicate function**, e.g. `is.numeric()`, which will return `TRUE` or `FALSE`.
 
 ]
 
