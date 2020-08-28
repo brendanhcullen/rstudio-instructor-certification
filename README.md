@@ -3,11 +3,11 @@ My materials for the [RStudio Instructor Certification](https://education.rstudi
 
 ## Sample lesson: Column-wise operations with `dplyr`
 
-### Slides available at: <br>
+### Slides
 https://columnwise-operations-dplyr.netlify.app. <br>
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cf61cf7b-c2e4-49b5-9fd3-1e5a5ec1b54b/deploy-status)](https://app.netlify.com/sites/columnwise-operations-dplyr/deploys)
 
-Interactive formative assessment exercises available at: <br>
+### Formative assessment exercises
 https://brendancullen.shinyapps.io/columnwise_operations_formative_assessment
 
 ### Concept map
