@@ -398,11 +398,11 @@ decorate('across(.cols, .fns, ..., .names)', error = TRUE, eval=FALSE) %>%
 <br>
 --
 
-<span style="color: darkorchid"> `.names` </span> = a `glue` specification that describes how you want to name the output columns, in which `{col}` stands for the selected column name.
+<span style="color: darkorchid"> `.names` </span> = how you want to name the output columns. Here, `"{col}"` is a special placeholder for the input column name, and you can add any suffix you want to it 
 
 --
 
-e.g. When calculating the mean of `body_mass_g`, `.names = {col}_mean` would result in the output column named `"body_mass_g_mean"`
+- e.g. When calculating the mean of the `year` column, specifying <span style="color: darkorchid"> `.names = "{col}_mean"` </span> would result in an output column named `"year_mean"`
 
 <br>
 ---
@@ -444,8 +444,6 @@ decorate_chunk("across-example-v1", eval = FALSE) %>%
 ***
 
 `r emo::ji("mag")` <span style="color: cornflowerblue"> `where()` </span> is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as <span style="color: cornflowerblue"> `is.numeric()` </span>, returns `TRUE`. 
-
-`r emo::ji("question")` You can use any kind of `tidyselect` helper within `across`. For a full list of select helpers, see [here](https://dplyr.tidyverse.org/reference/select.html). Also see [here](https://tladeras.shinyapps.io/learning_tidyselect/) for a great interactive tutorial on `tidyselect` by [Ted Laderas](https://laderast.github.io/). 
 ]
 
 .panel[.panel-name[Output v1]
@@ -509,6 +507,6 @@ class:inverse
 - Two blog posts by Rebecca Barter on [scoped verbs](http://www.rebeccabarter.com/blog/2019-01-23_scoped-verbs/) and [`across()`](http://www.rebeccabarter.com/blog/2020-07-09-across/).
 
 <br>
-- [Interactive tutorial](https://tladeras.shinyapps.io/learning_tidyselect/) by Ted Laderas on `tidyselect`.
+- [Interactive tutorial](https://tladeras.shinyapps.io/learning_tidyselect/) by Ted Laderas on `tidyselect` and a [full list](https://dplyr.tidyverse.org/reference/select.html) of selection helpers.
 
 <br>
