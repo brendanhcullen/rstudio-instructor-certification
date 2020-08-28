@@ -122,12 +122,13 @@ class: inverse
 <br>
 --
 
-- ***Learn*** how to perform column-wise operations using scoped verbs, e.g. `summarize_if()`, `summarize_at()`
+- ***Learn*** how to perform column-wise operations two ways: 
 
-<br>
+  - using scoped verbs, e.g. `summarize_at()`, `summarize_if()`, etc...
+
+  - using the new `across()` function from `dplyr` 1.0.0
+
 --
-
-- ***Learn*** how to perform column-wise operations using the new `across()` function from `dplyr` 1.0.0 
 
 <br>
 --
