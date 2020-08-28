@@ -239,7 +239,7 @@ knitr::include_graphics("img/summarize_multiple.png")
 
 .panel[.panel-name[Example #1]
 .pull-left[
-`r emo::ji("thinking")` Calculate the mean value of both **bill length** and **bill depth** for each species
+`r emo::ji("thinking")` Calculate the mean **bill length** and **bill depth** for each species
 
 `r emo::ji("no_entry_sign")` Avoid copying and pasting or repeating `mean()` more than once in your solution
 ]
@@ -287,7 +287,7 @@ template: multiple columns
 .panelset[
 
 .panel[.panel-name[Example #2]
-`r emo::ji("thinking")` Calculate the mean value of **all numeric** variables for each species.
+`r emo::ji("thinking")` Calculate the mean of **all numeric** variables for each species.
 
 `r emo::ji("no_entry_sign")` Again, no copying and pasting or repeating `mean()` more than once!
 ]
