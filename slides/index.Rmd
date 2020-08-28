@@ -429,7 +429,8 @@ background-size: 10%
 penguins %>% 
   group_by(species) %>% 
   summarize(across(where(is.numeric), 
-                   mean, na.rm = TRUE, 
+                   mean, 
+                   na.rm = TRUE, 
                    .names = '{col}_mean'))
 ```
 
@@ -456,7 +457,8 @@ decorate_chunk("across-example-v1", eval = FALSE) %>%
 penguins %>% 
   group_by(species) %>% 
   summarize(across(where(is.numeric), 
-                   list(mean = mean), na.rm = TRUE)) %>% 
+                   list(mean = mean), 
+                   na.rm = TRUE)) %>% 
   names()
 ```
 

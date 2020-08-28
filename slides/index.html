@@ -436,7 +436,7 @@ background-size: 10%
 
 
 
-&lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(across(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style='color:red'&gt;mean&lt;/span&gt;, &lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style='color:darkorchid'&gt;.names = '{col}_mean'&lt;/span&gt;))&lt;/code&gt;
+&lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(across(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style='color:red'&gt;mean&lt;/span&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style='color:darkorchid'&gt;.names = '{col}_mean'&lt;/span&gt;))&lt;/code&gt;
 
 ***
 
@@ -460,7 +460,7 @@ background-size: 10%
 
 
 
-&lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(across(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style='background-color:#ffff7f'&gt;&lt;span style='color:red'&gt;list(mean = mean)&lt;/span&gt;&lt;/span&gt;, &lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;)) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;names()&lt;/code&gt;
+&lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(across(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style='background-color:#ffff7f'&gt;&lt;span style='color:red'&gt;list(mean = mean)&lt;/span&gt;&lt;/span&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;)) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;names()&lt;/code&gt;
 
 ***
 
