@@ -87,7 +87,9 @@ knitr::include_graphics("img/christina_colwise.png")
 .pull-right[
 ## Needs
 
-- Wants to do more complex operations with `dplyr` verbs, e.g. apply data transformations to multiple columns at the same time
+- Wants to do more complex operations with `dplyr` verbs
+
+- Apply data transformations to multiple columns at the same time
 ]
 
 ---
@@ -126,13 +128,13 @@ class: inverse
 
   - using scoped verbs, e.g. `summarize_at()`, `summarize_if()`, etc...
 
-  - using the new `across()` function from `dplyr` 1.0.0
+  - using `across()` from `dplyr` 1.0.0
 
 --
 
 <br>
 
-- ***Apply*** `across()` along with `summarize()` to summarize multiple columns
+- ***Apply*** `across()` to summarize multiple columns of data
 
 <br>
 
@@ -436,6 +438,7 @@ penguins %>%
 
 ```{r echo=FALSE, message=FALSE}
 decorate_chunk("across-example-v1", eval = FALSE) %>% 
+  flair("across") %>% 
   flair("where(is.numeric)", color = "cornflowerblue") %>% 
   flair_rx(pattern = "mean(?=,)", color = "red") %>% 
   flair("na.rm = TRUE", color = "orange") %>% 
@@ -444,7 +447,9 @@ decorate_chunk("across-example-v1", eval = FALSE) %>%
 
 ***
 
-`r emo::ji("mag")` <span style="color: cornflowerblue"> `where()` </span> is an example of a `tidyselect` helper function. It selects the variables for which some predicate function , such as <span style="color: cornflowerblue"> `is.numeric()` </span>, returns `TRUE`. 
+`r emo::ji("mag")` <span style="color: cornflowerblue"> `where()` </span> is an example of a `tidyselect` helper function, like `starts_with()` or `contains()`. 
+
+It selects the variables for which some **predicate function** , such as <span style="color: cornflowerblue"> `is.numeric()` </span>, returns `TRUE`. 
 ]
 
 .panel[.panel-name[Output v1]
