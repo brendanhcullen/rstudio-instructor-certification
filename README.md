@@ -14,5 +14,5 @@ https://brendancullen.shinyapps.io/columnwise_operations_formative_assessment
 ![](/slides/img/columnwise_concept_map.png)
 <br>
 
-### Certificate
+# Certificate
 ![](certificate.png)
