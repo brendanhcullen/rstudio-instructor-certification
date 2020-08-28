@@ -131,7 +131,6 @@ class: inverse
 --
 
 <br>
---
 
 - ***Apply*** `across()` along with `summarize()` to summarize multiple columns
 
