@@ -78,12 +78,19 @@ penguins %>%
                    .names = "{col}_max"))
 ```
 
+
+> If you wish to view or play around with the `penguins` dataset, you can do so in the code chunk below. (All tidyverse functions are available to you).
+
+```{r penguins-practice, exercise = TRUE, exercise.lines = 3}
+penguins
+```
+
+
 ### Faded example #2
 
-Now perform the same calculation again, but this time specify the `.fns` argument using a named list and omit the `.names` argument. Be sure that your output columns have the same names as before (i.e. they still end with `"_max"`).
+Now perform the same calculation again, but this time specify the `.fns` argument using a named list and omit the `.names` argument from `across()`. Be sure that your output columns have the same names as before (i.e. they still end with `"_max"`).
 
 ```{r faded-example-2, exercise=TRUE, exercise.lines = 6}
-
 penguins %>% 
   group_by(species, island) %>% 
   summarize(___(c(where(___), -year), 
