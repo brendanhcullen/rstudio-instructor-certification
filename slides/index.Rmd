@@ -147,7 +147,7 @@ background-size: 10%
 
 --
 
-e.g. Create new columns with `mutate()`
+e.g. Create multiple new columns with `mutate()`
 
 ```{r echo = FALSE, out.width = "40%"}
 knitr::include_graphics("img/mutate.png")
@@ -155,7 +155,7 @@ knitr::include_graphics("img/mutate.png")
 
 --
 
-e.g. Summarize columns with `summarize()`
+e.g. Summarize multiple columns with `summarize()`
 
 ```{r echo = FALSE, out.width = "40%"}
 knitr::include_graphics("img/summarize_multiple.png")
