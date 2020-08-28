@@ -211,7 +211,7 @@ Apply `summarize()` to a **single** column.
 .panelset[
 
 .panel[.panel-name[Example]
-🤔 Use `summarize()` to calculate the mean `bill length` for each `species` in the `penguins` dataset
+🤔 Use `summarize()` to calculate the mean **bill length** for each species in `penguins`
 ]
 
 .panel[.panel-name[Code]
@@ -223,6 +223,7 @@ penguins %&gt;%
   summarize(bill_length_mm = mean(bill_length_mm, na.rm = TRUE))
 ```
 ]
+
 
 .panel[.panel-name[Output]
 
@@ -256,7 +257,7 @@ Apply `summarize()` to **multiple columns** at once
 
 .panel[.panel-name[Example #1]
 .pull-left[
-🤔 Calculate the mean value of **all bill dimensions** (i.e. `bill_length`, `bill_depth`) for each species
+🤔 Calculate the mean value of both **bill_length** and **bill_depth** for each species
 
 🚫 Avoid copying and pasting or repeating `mean()` more than once in your solution
 ]
@@ -275,9 +276,11 @@ Apply `summarize()` to **multiple columns** at once
 
 &lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;&lt;span style='background-color:#ffff7f'&gt;summarize_at&lt;/span&gt;(vars(c(bill_length_mm, bill_depth_mm)), &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;mean, na.rm = TRUE)&lt;/code&gt;
 
-🔍 `summarize_at()` is an example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a specific set of multiple columns at once. 
+🔍 `summarize_at()` is an example of a **scoped verb**. It is a special variant of `summarize()` that applies a summary function to a specific set of columns.
 
-⚠️ When using scoped verbs ending in `_at()` you must use `vars()` to select columns. Also notice that `na.rm = TRUE`, an additional argument to `mean()`, is passed as an argument of `summarize_at()`.
+⚠️ When using scoped verbs ending in `_at()` you must use `vars()` to select columns. 
+
+❓ How many columns will be in our output? 
 ]
 
 
