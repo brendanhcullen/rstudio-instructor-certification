@@ -431,7 +431,7 @@ background-size: 10%
 `r emo::ji("megaphone")` Remember, `across()` goes *inside* of the `dplyr` function that you want to apply to multiple columns.
 ]
 
-.panel[.panel-name[Code v1]
+.panel[.panel-name[Code 1.0]
 ```{r across-example-v1, include = FALSE, message=FALSE}
 penguins %>% 
   group_by(species) %>% 
@@ -457,19 +457,21 @@ decorate_chunk("across-example-v1", eval = FALSE) %>%
 It selects the variables for which some **predicate function** , such as <span style="color: cornflowerblue"> `is.numeric()` </span>, returns `TRUE`. 
 ]
 
-.panel[.panel-name[Output v1]
+.panel[.panel-name[Output 1.0]
 ```{r ref.label="across-example-v1", echo=FALSE, message=FALSE}
 ```
+
+`r emo::ji("eyes")` Notice that all of the output variables have the suffix `"_mean"`.
+
 ]
 
-.panel[.panel-name[Code v2]
+.panel[.panel-name[Code 2.0]
 ```{r across-example-v2, include = FALSE, message=FALSE}
 penguins %>% 
   group_by(species) %>% 
   summarize(across(where(is.numeric), 
                    list(mean = mean), 
-                   na.rm = TRUE)) %>% 
-  names()
+                   na.rm = TRUE))
 ```
 
 ```{r echo=FALSE, message=FALSE}
@@ -488,9 +490,12 @@ This way you don't have to manually specify a <span style="color: darkorchid"> `
 ]
 
 
-.panel[.panel-name[Output v2]
+.panel[.panel-name[Output 2.0]
 ```{r ref.label="across-example-v2", echo=FALSE, message=FALSE}
 ```
+
+`r emo::ji("eyes")` Same exact output as before! 
+
 ]
 ]
 

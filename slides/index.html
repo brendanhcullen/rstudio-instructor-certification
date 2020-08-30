@@ -439,7 +439,7 @@ background-size: 10%
 📣 Remember, `across()` goes *inside* of the `dplyr` function that you want to apply to multiple columns.
 ]
 
-.panel[.panel-name[Code v1]
+.panel[.panel-name[Code 1.0]
 
 
 
@@ -452,7 +452,7 @@ background-size: 10%
 It selects the variables for which some **predicate function** , such as &lt;span style="color: cornflowerblue"&gt; `is.numeric()` &lt;/span&gt;, returns `TRUE`. 
 ]
 
-.panel[.panel-name[Output v1]
+.panel[.panel-name[Output 1.0]
 
 ```
 ## # A tibble: 3 x 6
@@ -463,13 +463,16 @@ It selects the variables for which some **predicate function** , such as &lt;spa
 ## 3 Gentoo              47.5             15.0             217.            5076.
 ## # … with 1 more variable: year_mean &lt;dbl&gt;
 ```
+
+👀 Notice that all of the output variables have the suffix `"_mean"`.
+
 ]
 
-.panel[.panel-name[Code v2]
+.panel[.panel-name[Code 2.0]
 
 
 
-&lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(across(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style='background-color:#ffff7f'&gt;&lt;span style='color:red'&gt;list(mean = mean)&lt;/span&gt;&lt;/span&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;)) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;names()&lt;/code&gt;
+&lt;code class ='r hljs remark-code'&gt;penguins %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;group_by(species) %&gt;% &lt;br&gt;&amp;nbsp;&amp;nbsp;summarize(across(&lt;span style='color:cornflowerblue'&gt;where(is.numeric)&lt;/span&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style='background-color:#ffff7f'&gt;&lt;span style='color:red'&gt;list(mean = mean)&lt;/span&gt;&lt;/span&gt;, &lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style='color:orange'&gt;na.rm = TRUE&lt;/span&gt;))&lt;/code&gt;
 
 ***
 
@@ -479,12 +482,20 @@ This way you don't have to manually specify a &lt;span style="color: darkorchid"
 ]
 
 
-.panel[.panel-name[Output v2]
+.panel[.panel-name[Output 2.0]
 
 ```
-## [1] "species"                "bill_length_mm_mean"    "bill_depth_mm_mean"    
-## [4] "flipper_length_mm_mean" "body_mass_g_mean"       "year_mean"
+## # A tibble: 3 x 6
+##   species bill_length_mm_… bill_depth_mm_m… flipper_length_… body_mass_g_mean
+##   &lt;fct&gt;              &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 Adelie              38.8             18.3             190.            3701.
+## 2 Chinst…             48.8             18.4             196.            3733.
+## 3 Gentoo              47.5             15.0             217.            5076.
+## # … with 1 more variable: year_mean &lt;dbl&gt;
 ```
+
+👀 Same exact output as before! 
+
 ]
 ]
 
