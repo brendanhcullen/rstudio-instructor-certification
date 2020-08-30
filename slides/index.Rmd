@@ -207,9 +207,12 @@ knitr::include_graphics("img/summarize_single.png")
 ]
 
 .pull-right[
-```{r echo = FALSE, out.width = "90%"}
+```{r echo = FALSE, out.width = "75%"}
 knitr::include_graphics("img/penguins.png")
 ```
+
+Artwork by @allison_horst
+
 ]
 ]
 
