@@ -171,8 +171,8 @@ background-size: 10%
 # Palmer Penguins
 
 ```{r warning=FALSE, message=FALSE}
-library(tidyverse)
 library(palmerpenguins)
+library(tidyverse)
 ```
 
 ```{r}
@@ -198,9 +198,21 @@ knitr::include_graphics("img/summarize_single.png")
 
 .panelset[
 
+
 .panel[.panel-name[Example]
+.pull-left[
 `r emo::ji("thinking")` Use `summarize()` to calculate the mean **bill length** for each species in `penguins`
+
+`r emo::ji("question")` What function do you need to include before `summarize()` in order to calculate means for each species?
 ]
+
+.pull-right[
+```{r echo = FALSE, out.width = "90%"}
+knitr::include_graphics("img/penguins.png")
+```
+]
+]
+
 
 .panel[.panel-name[Code]
 
