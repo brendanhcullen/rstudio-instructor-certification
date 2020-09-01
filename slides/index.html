@@ -120,14 +120,14 @@ glimpse(penguins)
 ```
 ## Rows: 344
 ## Columns: 8
-## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…
-## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torge…
-## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0, 37…
-## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2, 17…
-## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186, 180, 1…
-## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, 4250, 33…
-## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male, NA, NA…
-## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, …
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Ade…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgers…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1,…
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1,…
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 18…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475,…
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, mal…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 200…
 ```
 
 ---
@@ -406,11 +406,12 @@ It selects the variables for which some **predicate function** , such as &lt;spa
 
 ```
 ## # A tibble: 3 x 6
-##   species  bill_length_mm_m… bill_depth_mm_m… flipper_length_… body_mass_g_mean year_mean
-##   &lt;fct&gt;                &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
-## 1 Adelie                38.8             18.3             190.            3701.     2008.
-## 2 Chinstr…              48.8             18.4             196.            3733.     2008.
-## 3 Gentoo                47.5             15.0             217.            5076.     2008.
+##   species bill_length_mm_… bill_depth_mm_m… flipper_length_… body_mass_g_mean
+##   &lt;fct&gt;              &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 Adelie              38.8             18.3             190.            3701.
+## 2 Chinst…             48.8             18.4             196.            3733.
+## 3 Gentoo              47.5             15.0             217.            5076.
+## # … with 1 more variable: year_mean &lt;dbl&gt;
 ```
 
 👀 Notice that all of the output variables have the suffix `"_mean"`.
@@ -435,11 +436,12 @@ This way you don't have to manually specify a &lt;span style="color: darkorchid"
 
 ```
 ## # A tibble: 3 x 6
-##   species  bill_length_mm_m… bill_depth_mm_m… flipper_length_… body_mass_g_mean year_mean
-##   &lt;fct&gt;                &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
-## 1 Adelie                38.8             18.3             190.            3701.     2008.
-## 2 Chinstr…              48.8             18.4             196.            3733.     2008.
-## 3 Gentoo                47.5             15.0             217.            5076.     2008.
+##   species bill_length_mm_… bill_depth_mm_m… flipper_length_… body_mass_g_mean
+##   &lt;fct&gt;              &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1 Adelie              38.8             18.3             190.            3701.
+## 2 Chinst…             48.8             18.4             196.            3733.
+## 3 Gentoo              47.5             15.0             217.            5076.
+## # … with 1 more variable: year_mean &lt;dbl&gt;
 ```
 
 👀 Same exact output as before! 
