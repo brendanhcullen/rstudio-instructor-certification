@@ -27,8 +27,6 @@ background-size: 70%
 
 ### Slides: [`r icon::fa("link")`](https://columnwise-operations-dplyr.netlify.app/) [columnwise-operations-dplyr.netlify.app](https://columnwise-operations-dplyr.netlify.app/)
 
----
-class:inverse
 
 ```{r setup, echo=FALSE}
 library(xaringanExtra)
@@ -52,84 +50,10 @@ pre {
 }
 ```
 
-# Learner Persona: Christina Colwise
-
-<center>
-```{r echo = FALSE, out.width = "60%"}
-knitr::include_graphics("img/christina_colwise.png")
-```
-</center>
-
 ---
-# Christina Colwise
+# Concept map
 
-.pull-left[
-![](img/christina_colwise.png)
-
-]
-
-
-.pull-right[
-## General Background
-
-- First-generation student part-way through her first year of a PhD program in Quantitative Psychology. 
-]
-
----
-
-# Christina Colwise
-
-.pull-left[
-![](img/christina_colwise.png)
-
-]
-
-
-.pull-right[
-## Starting Point
-
-- Has introductory working knowledge of the tidyverse
-
-- Frequently uses common `dplyr` verbs for simple data transformations
-]
-
----
-
-# Christina Colwise
-
-.pull-left[
-![](img/christina_colwise.png)
-
-]
-
-
-.pull-right[
-## Needs
-
-- Wants to do more complex operations with `dplyr` verbs
-
-- Apply data transformations to multiple columns at the same time
-]
-
----
-
-# Christina Colwise
-
-.pull-left[
-![](img/christina_colwise.png)
-
-]
-
-
-.pull-right[
-## Special Considerations
-
-- Works a full-time job during grad school
-
-- Balances a heavy coursehold and has limited bandwidth to learn new things
-
-- Wants to learn functions she can apply right away for analyzing data for her first year project 
-]
+![](img/columnwise_concept_map.png)
 
 ---
 class: inverse
@@ -145,9 +69,9 @@ class: inverse
 
 - ***Learn*** how to perform column-wise operations two ways: 
 
-  - using scoped verbs, e.g. `summarize_at()`, `summarize_if()`, etc...
+  - scoped verbs, e.g. `summarize_at()`, `summarize_if()`, etc...
 
-  - using `across()` from `dplyr` 1.0.0
+  - `across()` from `dplyr` 1.0.0
 
 --
 
