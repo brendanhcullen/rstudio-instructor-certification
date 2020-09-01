@@ -54,12 +54,12 @@ pre {
 library(metathis)
 meta() %>%
   meta_general(
-    description = "An overview of column-wise operations with dplyr using scoped verbs and the new across() function",
+    description = "An overview of column-wise operations with dplyr using scoped verbs and the new across() function from dplyr 1.0.0",
     generator = "xaringan and remark.js"
   ) %>% 
   meta_name("github-repo" = "brendanhcullen/rstudio-instructor-certification") %>% 
   meta_social(
-    title = "Column-wise Operations with `dplyr`: Old and New",
+    title = "Column-wise Operations with dplyr: Old and New",
     url = "https://columnwise-operations-dplyr.netlify.app/",
     image = "https://columnwise-operations-dplyr.netlify.app/share-card.png",
     og_type = "website",
