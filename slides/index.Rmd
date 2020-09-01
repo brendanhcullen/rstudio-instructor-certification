@@ -69,6 +69,10 @@ meta() %>%
   )
 ```
 
+```{r xaringanExtra-share-again, echo=FALSE}
+xaringanExtra::use_share_again()
+```
+
 ---
 # Concept map
 
