@@ -10,6 +10,10 @@ https://columnwise-operations-dplyr.netlify.app. <br>
 ### Formative assessment exercises
 https://brendancullen.shinyapps.io/columnwise_operations_formative_assessment
 
+### Learner persona
+![](/slides/img/learner_persona.png)
+<br>
+
 ### Concept map
 ![](/slides/img/columnwise_concept_map.png)
 <br>
