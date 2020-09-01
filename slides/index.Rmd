@@ -23,7 +23,7 @@ background-size: 70%
 <br><br><br><br>
 ## [Brendan Cullen](https://bcullen.rbind.io/)
 ### [Certified RStudio Trainer](https://education.rstudio.com/trainers/people/cullen+brendan/)
-### [`r icon::fa("envelope")`](mailto:bcullen@uoregon.edu) [bcullen@uoregon.edu](mailto:bcullen@uoregon.edu) | [`r icon::fa("twitter")`](https://twitter.com/_bcullen)  [_bcullen](https://twitter.com/_bcullen) | [`r icon::fa("github")`](https://github.com/brendanhcullen) [brendanhcullen](https://github.com/brendanhcullen)
+### [`r icon::fa("globe")`](https://bcullen.rbind.io/) [bcullen.rbind.io](https://bcullen.rbind.io/) | [`r icon::fa("twitter")`](https://twitter.com/_bcullen)  [_bcullen](https://twitter.com/_bcullen) | [`r icon::fa("github")`](https://github.com/brendanhcullen) [brendanhcullen](https://github.com/brendanhcullen)
 
 ### Slides: [`r icon::fa("link")`](https://columnwise-operations-dplyr.netlify.app/) [columnwise-operations-dplyr.netlify.app](https://columnwise-operations-dplyr.netlify.app/)
 
