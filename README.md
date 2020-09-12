@@ -1,5 +1,5 @@
 # rstudio-instructor-certification
-My materials for the [RStudio Instructor Certification](https://education.rstudio.com/trainers/) Teaching Exam. Feel free to share and re-use!
+My materials for the [RStudio Instructor Certification](https://education.rstudio.com/trainers/) Teaching Exam. Feel free to share and re-use! I wrote about my experience with the training course [here](https://bcullen.rbind.io/post/2020-09-03-reflections-on-rstudio-instructor-training/).
 
 # Sample lesson - Column-wise operations with `dplyr`: Old and New
 
