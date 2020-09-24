@@ -19,13 +19,13 @@
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:creator" content="@_bcullen"/>
     <meta name="twitter:site" content="@_bcullen"/>
-    <meta name="og:title" content="Column-wise Operations with dplyr: Old and New"/>
-    <meta name="og:description" content="An overview of column-wise operations with dplyr using scoped verbs and the new across() function from dplyr 1.0.0"/>
-    <meta name="og:url" content="https://columnwise-operations-dplyr.netlify.app/"/>
-    <meta name="og:image" content="https://columnwise-operations-dplyr.netlify.app/share-card.png"/>
-    <meta name="og:type" content="website"/>
-    <meta name="og:locale" content="en_US"/>
-    <meta name="article:author" content="Brendan Cullen"/>
+    <meta property="og:title" content="Column-wise Operations with dplyr: Old and New"/>
+    <meta property="og:description" content="An overview of column-wise operations with dplyr using scoped verbs and the new across() function from dplyr 1.0.0"/>
+    <meta property="og:url" content="https://columnwise-operations-dplyr.netlify.app/"/>
+    <meta property="og:image" content="https://columnwise-operations-dplyr.netlify.app/share-card.png"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="article:author" content="Brendan Cullen"/>
     <script src="index_files/clipboard-2.0.6/clipboard.min.js"></script>
     <link href="index_files/shareon-1.4.1/shareon.min.css" rel="stylesheet" />
     <script src="index_files/shareon-1.4.1/shareon.min.js"></script>
@@ -146,14 +146,14 @@ glimpse(penguins)
 ```
 ## Rows: 344
 ## Columns: 8
-## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Ade…
-## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgers…
-## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1,…
-## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1,…
-## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 18…
-## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475,…
-## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, mal…
-## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 200…
+## $ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adeli…
+## $ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…
+## $ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0, 37.8, 37.8, 41.1, 38.6, 34.…
+## $ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2, 17.1, 17.3, 17.6, 21.2, 21.…
+## $ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186, 180, 182, 191, 198, 185, 195, 1…
+## $ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, 4250, 3300, 3700, 3200, 3800, 440…
+## $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male, NA, NA, NA, NA, female, male, m…
+## $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2…
 ```
 
 ---
@@ -362,6 +362,13 @@ background-size: 10%
 
 ![](img/dplyr_across.png)
 .pull-right[Artwork by @allison_horst]
+
+---
+# `dplyr::across()`
+
+&lt;img src="img/dplyr_across_concept_map.png" width="85%" /&gt;
+
+.footnote[Source: [rstudio/concept-maps](https://github.com/rstudio/concept-maps/#across), courtesy of [Emma Vestesson](https://emmavestesson.netlify.app/)]
 ---
 background-image: url(img/dplyr_hex_new.png)
 background-position: 90% 5%
@@ -432,12 +439,11 @@ It selects the variables for which some **predicate function** , such as &lt;spa
 
 ```
 ## # A tibble: 3 x 6
-##   species bill_length_mm_… bill_depth_mm_m… flipper_length_… body_mass_g_mean
-##   &lt;fct&gt;              &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-## 1 Adelie              38.8             18.3             190.            3701.
-## 2 Chinst…             48.8             18.4             196.            3733.
-## 3 Gentoo              47.5             15.0             217.            5076.
-## # … with 1 more variable: year_mean &lt;dbl&gt;
+##   species   bill_length_mm_mean bill_depth_mm_mean flipper_length_mm_mean body_mass_g_mean year_mean
+##   &lt;fct&gt;                   &lt;dbl&gt;              &lt;dbl&gt;                  &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Adelie                   38.8               18.3                   190.            3701.     2008.
+## 2 Chinstrap                48.8               18.4                   196.            3733.     2008.
+## 3 Gentoo                   47.5               15.0                   217.            5076.     2008.
 ```
 
 👀 Notice that all of the output variables have the suffix `"_mean"`.
@@ -462,12 +468,11 @@ This way you don't have to manually specify a &lt;span style="color: darkorchid"
 
 ```
 ## # A tibble: 3 x 6
-##   species bill_length_mm_… bill_depth_mm_m… flipper_length_… body_mass_g_mean
-##   &lt;fct&gt;              &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-## 1 Adelie              38.8             18.3             190.            3701.
-## 2 Chinst…             48.8             18.4             196.            3733.
-## 3 Gentoo              47.5             15.0             217.            5076.
-## # … with 1 more variable: year_mean &lt;dbl&gt;
+##   species   bill_length_mm_mean bill_depth_mm_mean flipper_length_mm_mean body_mass_g_mean year_mean
+##   &lt;fct&gt;                   &lt;dbl&gt;              &lt;dbl&gt;                  &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Adelie                   38.8               18.3                   190.            3701.     2008.
+## 2 Chinstrap                48.8               18.4                   196.            3733.     2008.
+## 3 Gentoo                   47.5               15.0                   217.            5076.     2008.
 ```
 
 👀 Same exact output as before! 

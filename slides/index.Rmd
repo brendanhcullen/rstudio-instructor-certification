@@ -354,6 +354,15 @@ background-size: 10%
 
 ![](img/dplyr_across.png)
 .pull-right[Artwork by @allison_horst]
+
+---
+# `dplyr::across()`
+
+```{r echo=FALSE, out.width="85%"}
+knitr::include_graphics("img/dplyr_across_concept_map.png")
+```
+
+.footnote[Source: [rstudio/concept-maps](https://github.com/rstudio/concept-maps/#across), courtesy of [Emma Vestesson](https://emmavestesson.netlify.app/)]
 ---
 background-image: url(img/dplyr_hex_new.png)
 background-position: 90% 5%
