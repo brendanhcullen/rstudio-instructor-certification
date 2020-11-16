@@ -8,8 +8,6 @@ https://columnwise-operations-dplyr.netlify.app.
 <br>
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cf61cf7b-c2e4-49b5-9fd3-1e5a5ec1b54b/deploy-status)](https://app.netlify.com/sites/columnwise-operations-dplyr/deploys)
 
-![](/slides/slideshow.gif)
-
 ## Formative assessment exercises
 https://brendancullen.shinyapps.io/columnwise_operations_formative_assessment
 
